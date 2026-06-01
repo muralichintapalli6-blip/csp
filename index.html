@@ -1,0 +1,5199 @@
+<!-- Single-File unified version compiled by Antigravity -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prathibha High School | Digital Learning Hub</title>
+  
+  <!-- Lucide Vector Icons Library CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- ========================================= -->
+  <!-- 🎨 PREMIUM STYLING SYSTEM (Vanilla CSS) -->
+  <!-- ========================================= -->
+  <style>
+    /* Prathibha High School - Modern Premium Styling System */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+    /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+    :root {
+      /* Fonts */
+      --font-display: 'Outfit', sans-serif;
+      --font-sans: 'Inter', sans-serif;
+
+      /* Color Palette - SDG 4 Quality Education (Navy, Emerald & White) */
+      --primary-hue: 220;
+      --primary-sat: 85%;
+      --primary: hsl(var(--primary-hue), var(--primary-sat), 30%);
+      --primary-light: hsl(var(--primary-hue), var(--primary-sat), 94%);
+      --primary-hover: hsl(var(--primary-hue), var(--primary-sat), 22%);
+      --primary-glow: hsla(var(--primary-hue), var(--primary-sat), 30%, 0.15);
+
+      --secondary-hue: 145;
+      --secondary-sat: 65%;
+      --secondary: hsl(var(--secondary-hue), var(--secondary-sat), 40%);
+      --secondary-light: hsl(var(--secondary-hue), var(--secondary-sat), 94%);
+      --secondary-hover: hsl(var(--secondary-hue), var(--secondary-sat), 30%);
+      --secondary-glow: hsla(var(--secondary-hue), var(--secondary-sat), 40%, 0.15);
+
+      /* Neutrals (Light Mode) */
+      --bg-app: hsl(210, 33%, 98%);
+      --bg-card: hsl(0, 0%, 100%);
+      --bg-card-hover: hsl(210, 30%, 96%);
+      --border-color: hsl(214, 32%, 91%);
+      --border-focus: var(--primary);
+      --text-main: hsl(220, 20%, 20%);
+      --text-muted: hsl(220, 10%, 46%);
+      --text-white: hsl(0, 0%, 100%);
+      
+      /* Status Colors */
+      --color-success: hsl(145, 65%, 36%);
+      --color-danger: hsl(354, 70%, 54%);
+      --color-warning: hsl(38, 92%, 50%);
+      --color-info: hsl(200, 80%, 45%);
+
+      /* Shadows */
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.03);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+      --shadow-premium: 0 20px 40px rgba(13, 30, 72, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+      --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.06);
+
+      /* Misc */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-elastic: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* --- DARK MODE OVERRIDES --- */
+    [data-theme="dark"] {
+      --bg-app: hsl(222, 47%, 9%);
+      --bg-card: hsl(222, 47%, 13%);
+      --bg-card-hover: hsl(222, 47%, 16%);
+      --border-color: hsl(222, 35%, 19%);
+      --text-main: hsl(210, 40%, 98%);
+      --text-muted: hsl(218, 15%, 65%);
+      --primary-light: hsl(var(--primary-hue), 50%, 16%);
+      --secondary-light: hsl(var(--secondary-hue), 50%, 14%);
+      --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.4);
+      --primary-glow: hsla(var(--primary-hue), var(--primary-sat), 50%, 0.25);
+      --secondary-glow: hsla(var(--secondary-hue), var(--secondary-sat), 50%, 0.25);
+      --border-focus: hsl(var(--primary-hue), var(--primary-sat), 60%);
+    }
+
+    /* --- BASE STYLES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    /* --- TOAST NOTIFICATIONS --- */
+    #toast-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 380px;
+      width: calc(100% - 48px);
+    }
+
+    .toast-msg {
+      background: var(--bg-card);
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateX(120%);
+      animation: slideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transition: var(--transition-smooth);
+    }
+
+    .toast-msg.success { border-left-color: var(--color-success); }
+    .toast-msg.danger { border-left-color: var(--color-danger); }
+    .toast-msg.warning { border-left-color: var(--color-warning); }
+    .toast-msg.info { border-left-color: var(--color-info); }
+
+    .toast-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+    }
+    .toast-msg.success .toast-icon { color: var(--color-success); }
+    .toast-msg.danger .toast-icon { color: var(--color-danger); }
+    .toast-msg.warning .toast-icon { color: var(--color-warning); }
+    .toast-msg.info .toast-icon { color: var(--color-info); }
+
+    .toast-content {
+      flex-grow: 1;
+    }
+    .toast-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    .toast-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .toast-close {
+      cursor: pointer;
+      opacity: 0.5;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.2rem;
+      padding: 4px;
+    }
+    .toast-close:hover { opacity: 1; }
+
+    @keyframes slideIn {
+      to { transform: translateX(0); }
+    }
+
+    /* --- PREMIUM CONTAINER & WRAPPER --- */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- HEADER / NAVIGATION BAR --- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: hsla(210, 33%, 98%, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+    [data-theme="dark"] .header {
+      background: hsla(222, 47%, 9%, 0.8);
+    }
+
+    .nav-bar {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .school-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      box-shadow: 0 4px 10px var(--primary-glow);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .school-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .school-motto {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--secondary);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 8px 14px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .nav-item:hover, .nav-item.active {
+      color: var(--primary);
+      background-color: var(--primary-light);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+    }
+    .theme-toggle-btn:hover {
+      background-color: var(--bg-card-hover);
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+
+    .visitor-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background-color: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* User Session Widgets */
+    .user-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-badge {
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .user-badge.principal { background-color: #ffe8cc; color: #d9480f; }
+    .user-badge.teacher { background-color: #d0ebff; color: #1971c2; }
+    .user-badge.student { background-color: #ebfbee; color: #2b8a3e; }
+
+    [data-theme="dark"] .user-badge.principal { background-color: #5c2000; color: #ff9248; }
+    [data-theme="dark"] .user-badge.teacher { background-color: #0b3252; color: #74c0fc; }
+    [data-theme="dark"] .user-badge.student { background-color: #0e3d1c; color: #8ce99a; }
+
+    /* Hamburger Navigation for Mobile */
+    .mobile-nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* --- BUTTONS & CONTROLS --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--text-white);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: var(--text-white);
+    }
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+      box-shadow: 0 4px 14px var(--secondary-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--text-muted);
+    }
+
+    .btn-danger {
+      background-color: var(--color-danger);
+      color: var(--text-white);
+    }
+    .btn-danger:hover {
+      filter: brightness(0.9);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Forms Input and controls styling */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+    .form-control:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    /* --- HERO & HOMEPAGE SECTIONS --- */
+    .page-view {
+      display: none; /* Controlled by router */
+      padding: 40px 0;
+      animation: fadeRender 0.4s ease forwards;
+    }
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes fadeRender {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Announcement Ticker Banner */
+    .announcement-ticker {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: var(--text-white);
+      padding: 10px 0;
+      font-size: 0.88rem;
+      font-weight: 500;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .ticker-content-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ticker-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .ticker-text-slider {
+      display: inline-block;
+      white-space: nowrap;
+      animation: tickerSlide 25s linear infinite;
+      padding-left: 20px;
+    }
+    @keyframes tickerSlide {
+      0% { transform: translate3d(50%, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+
+    /* Hero Section */
+    .hero-sec {
+      padding: 60px 0 80px 0;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--secondary-light);
+      border: 1px solid var(--secondary);
+      color: var(--secondary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-backdrop {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-card-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .hero-card {
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      transition: var(--transition-elastic);
+    }
+    .hero-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-premium);
+      border-color: var(--primary);
+    }
+
+    .hero-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      background-color: var(--primary-light);
+    }
+
+    .hero-card:nth-child(2) .hero-card-icon {
+      color: var(--secondary);
+      background-color: var(--secondary-light);
+    }
+
+    .hero-card-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hero-card-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* Quote of the Day Section */
+    .quote-banner {
+      background-color: var(--primary-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      text-align: center;
+      margin: 40px 0;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-banner::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 10rem;
+      font-family: var(--font-display);
+      color: rgba(var(--primary-hue), var(--primary-sat), 30%, 0.05);
+      font-weight: 900;
+    }
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .quote-author {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Quick Access Cards */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-subtitle {
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    .quick-access-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .access-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: var(--transition-elastic);
+    }
+    .access-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-premium);
+      border-color: var(--secondary);
+    }
+
+    .access-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+    .access-card:nth-child(2) .access-icon-box {
+      background-color: var(--secondary-light);
+      color: var(--secondary);
+    }
+    .access-card:nth-child(3) .access-icon-box {
+      background-color: #fff0f6;
+      color: #d6336c;
+    }
+    .access-card:nth-child(4) .access-icon-box {
+      background-color: #f3f0ff;
+      color: #7048e8;
+    }
+
+    .access-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .access-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* SDG 4 Info Section */
+    .sdg-info-banner {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 60px;
+    }
+    .sdg-visual {
+      width: 140px;
+      height: 140px;
+      background-color: #c51b29; /* Official UN SDG 4 Red */
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      box-shadow: 0 10px 20px rgba(197, 27, 41, 0.3);
+    }
+    .sdg-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .sdg-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0 10px;
+    }
+    .sdg-desc-box {
+      flex-grow: 1;
+    }
+    .sdg-desc-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .sdg-desc-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Success Stories Grid */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+    }
+    .story-img-box {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .story-img-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+    }
+    .story-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      background: hsla(0, 0%, 0%, 0.6);
+      backdrop-filter: blur(4px);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+    }
+    .story-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .story-title {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+    .story-text {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    .story-author {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+
+    /* Announcements feed list in landing */
+    .home-announcements-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 60px;
+    }
+    .home-announcements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .home-ann-card {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-app);
+      border-left: 4px solid var(--secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+    .home-ann-card:hover {
+      transform: translateX(4px);
+      background-color: var(--bg-card-hover);
+    }
+    .home-ann-info h4 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .home-ann-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .home-ann-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    /* --- SEARCH & FILTER CONTROLS --- */
+    .filter-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex-grow: 1;
+      min-width: 250px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 18px;
+      height: 18px;
+    }
+
+    .search-wrapper .form-control {
+      padding-left: 44px;
+    }
+
+    .filter-selects {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      padding: 10px 28px 10px 14px;
+      font-size: 0.9rem;
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+      min-width: 130px;
+    }
+    .filter-select:focus {
+      border-color: var(--primary);
+      background-color: var(--bg-card);
+    }
+
+    /* Materials Cards Grid */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .material-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-smooth);
+    }
+    .material-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-glow);
+    }
+
+    .mat-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .mat-type-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background-color: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .material-card.ppt .mat-type-icon {
+      background-color: #fff0f6;
+      color: #d6336c;
+    }
+    .material-card.worksheet .mat-type-icon {
+      background-color: #fff9db;
+      color: #f59f00;
+    }
+    .material-card.image .mat-type-icon {
+      background-color: var(--secondary-light);
+      color: var(--secondary);
+    }
+
+    .mat-class-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .mat-card-title {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .mat-meta-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .mat-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mat-card-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mat-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .mat-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon-only {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .btn-icon-only:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 40px;
+      grid-column: 1 / -1;
+      background: var(--bg-card);
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+    }
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* --- VIDEO LESSONS PAGE --- */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .video-player-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-player-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-info-box {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .video-category {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .vid-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+    .vid-badge.class {
+      background-color: var(--secondary-light);
+      color: var(--secondary);
+    }
+
+    .video-title {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .video-meta {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+    }
+
+    /* --- DAILY QUIZ PAGE --- */
+    .quiz-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+    .quiz-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .quiz-title {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .quiz-stat-pill {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .quiz-card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 14px;
+    }
+
+    /* Quiz Active Portal UI */
+    .quiz-play-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+    }
+    .quiz-play-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .quiz-progress-bar-bg {
+      height: 6px;
+      width: 100%;
+      background-color: var(--bg-app);
+      border-radius: var(--radius-full);
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--secondary);
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+    .quiz-question-box {
+      margin-bottom: 30px;
+    }
+    .quiz-q-num {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .quiz-q-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .quiz-option-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .quiz-option-label:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--text-muted);
+    }
+    .quiz-option-input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+    .quiz-option-label.selected {
+      background-color: var(--primary-light);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .quiz-play-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    /* Quiz Results Portal */
+    .quiz-result-scorecard {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      background-color: var(--primary-light);
+    }
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      margin: 0 auto 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      border: 4px solid var(--primary);
+    }
+    .score-big {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .score-total {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .score-msg {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .score-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .quiz-review-q-card {
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-review-q-card.correct {
+      border-left: 5px solid var(--color-success);
+    }
+    .quiz-review-q-card.wrong {
+      border-left: 5px solid var(--color-danger);
+    }
+    .review-choices {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
+    .choice-pill {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .choice-pill.selected-wrong {
+      background-color: #fff0f0;
+      color: var(--color-danger);
+    }
+    .choice-pill.correct-ans {
+      background-color: #ebfbee;
+      color: var(--color-success);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .choice-pill.selected-wrong { background-color: #2b1313; }
+    [data-theme="dark"] .choice-pill.correct-ans { background-color: #0b2413; }
+
+    /* --- CAREER GUIDANCE PAGE --- */
+    .career-timeline-wrapper {
+      margin: 40px 0;
+      position: relative;
+    }
+    .career-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .career-path-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-elastic);
+    }
+    .career-path-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-premium);
+    }
+    .path-header {
+      padding: 24px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      text-align: center;
+    }
+    .path-header.poly { background: linear-gradient(135deg, #7048e8, #ae3ec9); }
+    .path-header.iti { background: linear-gradient(135deg, #f59f00, #d9480f); }
+    .path-header.schol { background: linear-gradient(135deg, #0b7285, #0ca678); }
+
+    .path-abbr {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .path-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    .path-body {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .path-opportunities {
+      list-style: none;
+      margin-top: 15px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .path-opportunities li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+    .path-opportunities li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: 800;
+    }
+
+    /* Guidance Hub Tip Cards */
+    .study-tips-sec {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-top: 50px;
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .tip-card {
+      background-color: var(--bg-app);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: var(--transition-smooth);
+    }
+    .tip-card:hover {
+      background-color: var(--bg-card-hover);
+    }
+    .tip-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background-color: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* --- CONTACT & FAQ SECTION --- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .contact-form-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .contact-detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background-color: var(--secondary-light);
+      color: var(--secondary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-detail-text h4 {
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    .contact-detail-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .mock-map-box {
+      background: var(--border-color);
+      border-radius: var(--radius-lg);
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    /* FAQ Accordion */
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .faq-question {
+      padding: 18px 24px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background-color: var(--bg-card-hover);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 1000px;
+      padding: 0 24px 20px 24px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 14px;
+    }
+    .faq-arrow {
+      transition: transform 0.3s;
+      width: 18px;
+      height: 18px;
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* --- DASHBOARDS MAIN LAYOUT --- */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 30px;
+      min-height: calc(100vh - 200px);
+    }
+
+    .dashboard-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px 14px;
+      height: fit-content;
+    }
+
+    .dash-menu-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding: 0 12px 10px 12px;
+      font-weight: 700;
+    }
+
+    .dash-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .dash-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .dash-nav-item:hover, .dash-nav-item.active {
+      color: var(--primary);
+      background-color: var(--primary-light);
+      font-weight: 600;
+    }
+
+    .dashboard-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .dash-pane {
+      display: none;
+      animation: fadeRender 0.35s ease forwards;
+    }
+    .dash-pane.active {
+      display: block;
+    }
+
+    /* Stats Counter Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .stat-box:nth-child(1) .stat-icon { background-color: var(--primary-light); color: var(--primary); }
+    .stat-box:nth-child(2) .stat-icon { background-color: var(--secondary-light); color: var(--secondary); }
+    .stat-box:nth-child(3) .stat-icon { background-color: #fff0f6; color: #d6336c; }
+    .stat-box:nth-child(4) .stat-icon { background-color: #e8f7ff; color: #1c7ed6; }
+
+    .stat-details {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* Custom CSS-Based Analytics Chart */
+    .analytics-chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .chart-header {
+      margin-bottom: 20px;
+    }
+    .chart-y-axis {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-right: 10px;
+    }
+    .chart-container {
+      display: flex;
+      align-items: flex-end;
+      height: 200px;
+      gap: 20px;
+      border-left: 2px solid var(--border-color);
+      border-bottom: 2px solid var(--border-color);
+      padding: 10px 20px;
+      margin-top: 15px;
+    }
+    .chart-bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+      position: relative;
+    }
+    .chart-bar {
+      width: 100%;
+      max-width: 40px;
+      background: linear-gradient(0deg, var(--primary), var(--secondary));
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+      position: relative;
+      transition: height 1s ease-out;
+      cursor: pointer;
+    }
+    .chart-bar:hover {
+      filter: brightness(1.15);
+    }
+    .chart-tooltip {
+      position: absolute;
+      top: -30px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 3px 6px;
+      font-size: 0.72rem;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+    .chart-bar:hover .chart-tooltip {
+      opacity: 1;
+    }
+    .chart-bar-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* Moderation & Lists Tables */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+      background-color: var(--bg-card);
+    }
+    .custom-table th {
+      background-color: var(--bg-app);
+      font-weight: 600;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    .custom-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+    .custom-table tr:last-child td {
+      border-bottom: none;
+    }
+    .custom-table tr:hover td {
+      background-color: var(--bg-card-hover);
+    }
+
+    /* User Account Status Pills */
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-pill.active { background-color: #ebfbee; color: var(--color-success); }
+    .status-pill.inactive { background-color: #fff0f0; color: var(--color-danger); }
+    .status-pill.pending { background-color: #fff9db; color: var(--color-warning); }
+
+    /* --- MODAL DIALOGS --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-window {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: calc(100% - 32px);
+      max-width: 520px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.9);
+      transition: var(--transition-elastic);
+      overflow: hidden;
+    }
+    .modal-overlay.active .modal-window {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-body {
+      padding: 24px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background-color: var(--bg-app);
+    }
+
+    /* Quiz Question Builder Elements */
+    .question-builder-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 18px;
+      background-color: var(--bg-app);
+      position: relative;
+    }
+    .btn-remove-q {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: var(--color-danger);
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* Profile details block in dashboard */
+    .profile-view-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: var(--bg-app);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+    .profile-logo-display {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --- FOOTER SECTIONS --- */
+    .footer {
+      margin-top: auto;
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 40px 0 20px 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-link {
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .footer-link:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .footer-copyright {
+      font-weight: 500;
+      }
+    .footer-sdg-motto {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    /* --- MOBILE RESPONSIVENESS ADJUSTMENTS --- */
+    @media (max-width: 991px) {
+      .hero-sec {
+        flex-direction: column;
+        padding: 40px 0;
+        text-align: center;
+      }
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-cta {
+        justify-content: center;
+      }
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-sidebar {
+        height: auto;
+      }
+      .dash-nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; /* Hide standard nav on mobile */
+      }
+      .mobile-nav-toggle {
+        display: block;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- TOAST NOTIFICATIONS BOX --- -->
+  <div id="toast-container"></div>
+
+  <!-- --- ANNOUNCEMENT BANNER TICKER --- -->
+  <div class="announcement-ticker">
+    <div class="container ticker-content-wrapper">
+      <span class="ticker-badge">Notice</span>
+      <div class="ticker-text-slider">
+        ✦ Welcome to the Prathibha High School Digital Learning Hub supporting UN SDG 4! 
+        ✦ First Term examinations commence from June 15, 2026. 
+        ✦ Special Class 10 Trigonometry doubt-clearing session this Thursday at 4:00 PM!
+      </div>
+    </div>
+  </div>
+
+  <!-- --- MAIN NAVIGATION HEADER --- -->
+  <header class="header">
+    <div class="container nav-bar">
+      <!-- Logo Block -->
+      <a href="#home" class="logo-block">
+        <div class="school-logo">PHS</div>
+        <div class="brand-text">
+          <span class="school-name">Prathibha High School</span>
+          <span class="school-motto">"Learn Today, Lead Tomorrow"</span>
+        </div>
+      </a>
+
+      <!-- Hamburger toggle for mobile -->
+      <button class="mobile-nav-toggle" onclick="document.getElementById('nav-links-container').classList.toggle('mobile-active')">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <!-- Nav Items SPA Router Links -->
+      <nav class="nav-links" id="nav-links-container">
+        <!-- Injected dynamically -->
+      </nav>
+
+      <!-- Nav Action Pills -->
+      <div class="nav-actions">
+        <!-- Visitor Pill -->
+        <div class="visitor-pill" title="Total Portal Visits">
+          <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+          <span>Visitors: <strong id="visitor-count-pill">1248</strong></span>
+        </div>
+
+        <!-- Dark/Light Theme Button -->
+        <button class="theme-toggle-btn" onclick="toggleDarkMode()" title="Toggle Theme">
+          <i data-lucide="sun"></i>
+        </button>
+
+        <!-- Auth Actions widget -->
+        <div id="nav-auth-container">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================= -->
+  <!-- 1. HOME VIEW PAGE -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="home-view">
+    <!-- Hero Section -->
+    <section class="hero-sec">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
+          Supporting UN SDG 4: Quality Education
+        </div>
+        <h1 class="hero-title">Empowering Young Minds For a Brighter Tomorrow</h1>
+        <p class="hero-description">
+          Welcome to the centralized Digital Learning Hub of Prathibha High School. We provide modern digital resources, interactive video modules, revision exercises, and guidance for Classes 1 to 10 to assure equitable quality learning for all.
+        </p>
+        <div class="hero-cta">
+          <a href="#materials" class="btn btn-primary">Browse Study Materials</a>
+          <a href="#quizzes" class="btn btn-outline">Take Daily Quiz</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-backdrop"></div>
+        <div class="hero-card-grid">
+          <div class="hero-card">
+            <div class="hero-card-icon"><i data-lucide="users"></i></div>
+            <div class="hero-card-num" id="home-stat-teachers">0+</div>
+            <div class="hero-card-label">Verified Educators</div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon"><i data-lucide="book-open"></i></div>
+            <div class="hero-card-num" id="home-stat-materials">0+</div>
+            <div class="hero-card-label">Syllabus Resources</div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon"><i data-lucide="video"></i></div>
+            <div class="hero-card-num" id="home-stat-videos">0+</div>
+            <div class="hero-card-label">Video Classes</div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon"><i data-lucide="award"></i></div>
+            <div class="hero-card-num" id="home-stat-quizzes">0+</div>
+            <div class="hero-card-label">Active Quizzes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote of the Day banner -->
+    <section class="quote-banner">
+      <div class="quote-text">"Education is the most powerful weapon which you can use to change the world."</div>
+      <div class="quote-author">— Nelson Mandela</div>
+    </section>
+
+    <!-- Quick Access Navigation -->
+    <section style="margin: 60px 0;">
+      <div class="section-header">
+        <span class="section-subtitle">Quick Portal Access</span>
+        <h2 class="section-title">Explore Our Educational Center</h2>
+      </div>
+      <div class="quick-access-grid">
+        <div class="access-card" onclick="window.location.hash = '#materials'">
+          <div class="access-icon-box"><i data-lucide="folder-open"></i></div>
+          <h3 class="access-title">Study Materials</h3>
+          <p class="access-desc">Class notes, assignments, revision worksheets, and presentation slides for all subjects from Class 1 to 10.</p>
+        </div>
+        <div class="access-card" onclick="window.location.hash = '#videos'">
+          <div class="access-icon-box"><i data-lucide="youtube"></i></div>
+          <h3 class="access-title">Video Lessons</h3>
+          <p class="access-desc">Interactive, self-paced class streams and verified curriculum lessons compiled by respective class teachers.</p>
+        </div>
+        <div class="access-card" onclick="window.location.hash = '#quizzes'">
+          <div class="access-icon-box"><i data-lucide="help-circle"></i></div>
+          <h3 class="access-title">Daily Quiz</h3>
+          <p class="access-desc">Assess your understanding instantly! Attempt multiple-choice quizzes created by teachers and review answers.</p>
+        </div>
+        <div class="access-card" onclick="window.location.hash = '#guidance'">
+          <div class="access-icon-box"><i data-lucide="compass"></i></div>
+          <h3 class="access-title">Career Guidance</h3>
+          <p class="access-desc">Valuable roadmap pathways for post-10th study streams, study tips, ITI opportunities, and government scholarships.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SDG 4 Awareness Hub -->
+    <section class="sdg-info-banner">
+      <div class="sdg-visual">
+        <span class="sdg-number">4</span>
+        <span class="sdg-label">Quality Education</span>
+      </div>
+      <div class="sdg-desc-box">
+        <h3 class="sdg-desc-title">Our Alignment with UN Sustainable Development Goal 4</h3>
+        <p class="sdg-desc-text">
+          United Nations SDG 4 aims to <strong>"ensure inclusive and equitable quality education and promote lifelong learning opportunities for all."</strong> By centralizing resources, facilitating digital interaction, offering quick mock assessments, and offering vocational pathways guidance, Prathibha High School's Learning Hub ensures no student is left behind in the digital age.
+        </p>
+      </div>
+    </section>
+
+    <!-- Latest School Announcements -->
+    <section style="margin-bottom: 60px;">
+      <div class="home-announcements-wrapper">
+        <h3 style="font-family: var(--font-display); font-size: 1.4rem; display: flex; align-items:center; gap: 8px;">
+          <i data-lucide="bell" style="color: var(--secondary);"></i> Latest Campus Announcements
+        </h3>
+        <div class="home-announcements-list" id="home-announcements-container">
+          <!-- Injected dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section style="margin-bottom: 80px;">
+      <div class="section-header">
+        <span class="section-subtitle">Academic Highlights</span>
+        <h2 class="section-title">Success Stories & Alumni Pride</h2>
+      </div>
+      <div class="stories-grid">
+        <div class="story-card">
+          <div class="story-img-box">
+            <div class="story-img-placeholder"><i data-lucide="award" style="width:36px; height:36px; color: var(--primary);"></i></div>
+            <span class="story-badge">State 1st Merit Rank</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title">Class 10 State Board Perfect Score</h3>
+            <p class="story-text">"The structured revision schedules, digital chapter notes, and chapterwise mock quizzes uploaded on the hub by our maths teachers helped me clear all boarding concepts easily."</p>
+            <span class="story-author">— Sneha Reddy (Alumni, Class of 2025)</span>
+          </div>
+        </div>
+        <div class="story-card">
+          <div class="story-img-box">
+            <div class="story-img-placeholder"><i data-lucide="shield" style="width:36px; height:36px; color: var(--secondary);"></i></div>
+            <span class="story-badge">National Scholarship Winner</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title">INSPIRE Scholarship Award</h3>
+            <p class="story-text">"Accessing the Career Guidance hub let me track active government scholarships and prepare my science projects early, securing my admission into top colleges."</p>
+            <span class="story-author">— Manoj Varma (Grade 10 Scholar)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 2. STUDY MATERIALS VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="materials-view">
+    <div class="section-header">
+      <span class="section-subtitle">Syllabus Resources</span>
+      <h2 class="section-title">Academic Study Materials Hub</h2>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="filter-bar">
+      <!-- Search -->
+      <div class="search-wrapper">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" class="form-control" id="m-search" placeholder="Search by topic, chapter, subject, or teacher..." oninput="renderMaterials()">
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-selects">
+        <select class="filter-select" id="m-class-filter" onchange="renderMaterials()">
+          <option value="">All Classes</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+        </select>
+
+        <select class="filter-select" id="m-subject-filter" onchange="renderMaterials()">
+          <option value="">All Subjects</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+          <option value="Social Studies">Social Studies</option>
+          <option value="Telugu">Telugu</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Computer Science">Computer Science</option>
+        </select>
+
+        <select class="filter-select" id="m-type-filter" onchange="renderMaterials()">
+          <option value="">All Formats</option>
+          <option value="pdf">PDF Docs</option>
+          <option value="ppt">PPT Slides</option>
+          <option value="worksheet">Worksheets</option>
+          <option value="image">Diagrams</option>
+          <option value="notes">Handwritten Notes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="materials-grid" id="materials-cards-grid">
+      <!-- Injected dynamically -->
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 3. VIDEO LESSONS VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="videos-view">
+    <div class="section-header">
+      <span class="section-subtitle">Visual Syllabus</span>
+      <h2 class="section-title">E-Classroom Video Lessons</h2>
+    </div>
+
+    <div class="filter-bar">
+      <div class="search-wrapper">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" class="form-control" id="v-search" placeholder="Search lessons..." oninput="renderVideos()">
+      </div>
+
+      <div class="filter-selects">
+        <select class="filter-select" id="v-class-filter" onchange="renderVideos()">
+          <option value="">All Classes</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+        </select>
+
+        <select class="filter-select" id="v-subject-filter" onchange="renderVideos()">
+          <option value="">All Subjects</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+          <option value="Social Studies">Social Studies</option>
+          <option value="Computer Science">Computer Science</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="videos-grid" id="videos-cards-grid">
+      <!-- Injected dynamically -->
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 4. DAILY QUIZ VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="quizzes-view">
+    <div class="section-header">
+      <span class="section-subtitle">Assess Yourself</span>
+      <h2 class="section-title">Daily Knowledge Quizzes</h2>
+    </div>
+
+    <div id="quiz-intro-section">
+      <div class="quiz-list" id="quiz-cards-grid">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+
+    <div id="quiz-playing-portal" style="display: none;">
+      <div class="quiz-play-wrapper">
+        <div class="quiz-play-header">
+          <h3 id="quiz-progress-text" style="font-size: 1.1rem; color: var(--primary);">Question 1 of 5</h3>
+          <span class="vid-badge" style="background-color: var(--primary-light); color: var(--primary);">Instant Grading Mode</span>
+        </div>
+        
+        <div class="quiz-progress-bar-bg">
+          <div class="quiz-progress-bar-fill" id="quiz-progress-fill"></div>
+        </div>
+
+        <div id="quiz-active-q-block">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div class="quiz-play-actions">
+          <button class="btn btn-outline" onclick="exitQuiz()">Quit Test</button>
+          <button class="btn btn-primary" onclick="submitQuestionAnswer()">Submit & Next <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-results-portal" style="display: none;">
+      <!-- Injected dynamically -->
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 5. CAREER GUIDANCE VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="guidance-view">
+    <div class="section-header">
+      <span class="section-subtitle">Future Horizon</span>
+      <h2 class="section-title">Career Guidance & Pathways Hub</h2>
+    </div>
+
+    <div class="sdg-info-banner" style="margin-bottom: 40px; padding: 30px;">
+      <div class="sdg-desc-box">
+        <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 8px;">Shape Your Tomorrow</h3>
+        <p style="font-size: 0.92rem; color: var(--text-muted);">
+          Clearing Class 10 is an essential milestone. We help our students review intermediate academic streams, vocational opportunities, ITI trades, and explore financial scholarships early to pave a solid roadmap.
+        </p>
+      </div>
+    </div>
+
+    <div class="career-roadmap-grid">
+      <!-- MPC Option -->
+      <div class="career-path-card">
+        <div class="path-header">
+          <div class="path-abbr">MPC</div>
+          <div class="path-title">Maths, Physics, Chemistry</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">The traditional engineering pathway. Perfect for analytical students interested in spatial mechanics, coding, physics research, or architectures.</p>
+          <ul class="path-opportunities">
+            <li>B.Tech / B.E Careers</li>
+            <li>B.Sc Mathematics / Physics</li>
+            <li>Defense NDA Services</li>
+            <li>B.Arch Design</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BiPC Option -->
+      <div class="career-path-card">
+        <div class="path-header" style="background: linear-gradient(135deg, #0ca678, #2b8a3e);">
+          <div class="path-abbr">BiPC</div>
+          <div class="path-title">Biology, Physics, Chemistry</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">The medical science pathway. Focuses on cellular life, anatomy, biochemistry, agriculture, pharmacy, and bio-technologies.</p>
+          <ul class="path-opportunities">
+            <li>MBBS / BDS Medics</li>
+            <li>B.Pharmacy Courses</li>
+            <li>B.Sc Agriculture / Biotech</li>
+            <li>Veterinary Sciences</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Commerce MEC Option -->
+      <div class="career-path-card">
+        <div class="path-header poly">
+          <div class="path-abbr">MEC/CEC</div>
+          <div class="path-title">Mathematics / Civics, Econ, Commerce</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">The business and corporate hub. Tailored for auditing, financial markets, banking economics, taxation law, and administrative paths.</p>
+          <ul class="path-opportunities">
+            <li>Chartered Accountancy (CA)</li>
+            <li>B.Com / BBA Degrees</li>
+            <li>Corporate Law (CLAT)</li>
+            <li>Actuarial Finance Analyst</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Vocational Polytechnic -->
+      <div class="career-path-card">
+        <div class="path-header iti">
+          <div class="path-abbr">Polytechnic</div>
+          <div class="path-title">3-Year Diploma in Engineering</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">Direct vocational entry into engineering fields. Diploma holders qualify for immediate junior engineer corporate roles.</p>
+          <ul class="path-opportunities">
+            <li>Civil, Mech, Electrical Diplomas</li>
+            <li>Computer Engineering Diploma</li>
+            <li>Lateral B.Tech 2nd Year Entry</li>
+            <li>Government Technical Cadres</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-roadmap-grid" style="margin-top: 28px;">
+      <!-- ITI -->
+      <div class="career-path-card">
+        <div class="path-header" style="background: linear-gradient(135deg, #1c7ed6, #1864ab);">
+          <div class="path-abbr">ITI Trades</div>
+          <div class="path-title">Industrial Training Institute (1-2 Years)</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">Practical craft skill development. ITI certificates secure rapid technical jobs in railways, power houses, and machinery factories.</p>
+          <ul class="path-opportunities">
+            <li>Electrician & Fitter Trades</li>
+            <li>Mechanical & Welder Crafts</li>
+            <li>Railway Loco Pilot eligibility</li>
+            <li>Apprenticeship Programs</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Scholarships -->
+      <div class="career-path-card">
+        <div class="path-header schol">
+          <div class="path-abbr">Scholarships</div>
+          <div class="path-title">Government & Meritorious Aids</div>
+        </div>
+        <div class="path-body">
+          <p style="font-size:0.85rem; color: var(--text-muted); flex-grow:1;">Never let financial constraints block your study goals! Learn about INSPIRE, NMMS, NTSE, and community school welfare benefits.</p>
+          <div style="margin-top: 15px;">
+            <button class="btn btn-outline" style="width: 100%;" onclick="showScholarshipModal()">View Active Scholarships</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Study Tips & Guidance -->
+    <div class="study-tips-sec">
+      <h3 style="font-family: var(--font-display); font-size: 1.3rem;">✦ Strategic Study & Revision Tips</h3>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon"><i data-lucide="clock"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Pomodoro Technique</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Study for 25 minutes completely focused, followed by a 5-minute break to refresh synapses.</p>
+          </div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon"><i data-lucide="git-branch"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Concept Mapping</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Draw vertical mind maps to link heavy chapter subtopics (like chemical reactions or map history).</p>
+          </div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Solve Quizzes</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Continuous self-testing is proven to boost active recall and cut boardroom exam nervousness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 6. CONTACT & FEEDBACK VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="contact-view">
+    <div class="section-header">
+      <span class="section-subtitle">Reach Out</span>
+      <h2 class="section-title">Contact & Parent Feedback Hub</h2>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Contact Form -->
+      <div class="contact-form-box">
+        <h3 style="font-family: var(--font-display); margin-bottom: 20px;">Send Us a Message</h3>
+        <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="feed-name" placeholder="Enter your name" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Class Relation</label>
+              <select class="form-control" id="feed-class" required>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10" selected>Class 10</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="feed-email" placeholder="email@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message / Parent Feedback</label>
+            <textarea class="form-control" id="feed-message" placeholder="Provide valuable feedback, suggestions, or queries here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Feedback</button>
+        </form>
+      </div>
+
+      <!-- Campus Details -->
+      <div class="contact-info-panel">
+        <div class="contact-detail-card">
+          <div class="contact-icon-wrapper"><i data-lucide="map-pin"></i></div>
+          <div class="contact-detail-text">
+            <h4>Campus Address</h4>
+            <p>Plot 45-48, Education Enclave, Near Science Center, Hyderabad, TS, India</p>
+          </div>
+        </div>
+        
+        <div class="contact-detail-card">
+          <div class="contact-icon-wrapper"><i data-lucide="phone"></i></div>
+          <div class="contact-detail-text">
+            <h4>Contact Numbers</h4>
+            <p>+91 40 2345 6789, +91 98480 22338</p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-icon-wrapper"><i data-lucide="mail"></i></div>
+          <div class="contact-detail-text">
+            <h4>Office Email</h4>
+            <p>info@prathibhaschool.edu.in</p>
+          </div>
+        </div>
+
+        <!-- Map Mock -->
+        <div class="mock-map-box">
+          <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            <i data-lucide="map" style="width: 32px; height: 32px; margin-bottom: 8px; opacity: 0.5;"></i><br/>
+            [Google Maps Location Active]<br/>
+            Prathibha High School Campus
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div style="margin-top: 60px;">
+      <div class="section-header" style="margin-bottom: 20px;">
+        <span class="section-subtitle">Common Queries</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      
+      <div class="faq-accordion">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>How do students register on this portal?</span>
+            <i data-lucide="chevron-down" class="faq-arrow"></i>
+          </div>
+          <div class="faq-answer">
+            Students do not need separate accounts to browse study materials or watch lesson streams. They can browse directly! If a student wants their scores to be recorded in performance logs, they can log in using credentials provided by their class teachers.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>Who approves the educational files and videos?</span>
+            <i data-lucide="chevron-down" class="faq-arrow"></i>
+          </div>
+          <div class="faq-answer">
+            To maintain structural quality standards, all quizzes, lesson notes, and videos uploaded by teachers enter a "Pending review" queue. The Principal moderates and approves files before they become visible on the public Student Portal.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            <span>Can teachers log in using their own credentials?</span>
+            <i data-lucide="chevron-down" class="faq-arrow"></i>
+          </div>
+          <div class="faq-answer">
+            Yes. The Principal creates accounts for teachers and assigns them specific classes and subjects. Teachers can log in using their assigned emails and passwords to access their customizable educator dashboard.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 7. PRINCIPAL DASHBOARD VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="principal-dashboard-view">
+    <div class="dashboard-grid">
+      <!-- Sidebar Menu -->
+      <aside class="dashboard-sidebar">
+        <div class="dash-menu-title">Principal Controls</div>
+        <ul class="dash-nav-list">
+          <li class="dash-nav-item active" onclick="switchPrincipalTab('overview')">
+            <i data-lucide="layout-dashboard"></i> Overview Panel
+          </li>
+          <li class="dash-nav-item" onclick="switchPrincipalTab('teachers')">
+            <i data-lucide="users"></i> Manage Teachers
+          </li>
+          <li class="dash-nav-item" onclick="switchPrincipalTab('moderation')">
+            <i data-lucide="check-square"></i> Content Approval
+          </li>
+          <li class="dash-nav-item" onclick="switchPrincipalTab('settings')">
+            <i data-lucide="settings"></i> School Settings
+          </li>
+          <li class="dash-nav-item" onclick="switchPrincipalTab('feedback')">
+            <i data-lucide="inbox"></i> Parents Feedback
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Main Dash Content Pane -->
+      <div class="dashboard-content">
+        
+        <!-- PANE: OVERVIEW -->
+        <div class="dash-pane active" id="p-pane-overview">
+          <h2 style="font-family: var(--font-display); margin-bottom: 20px;">LMS System Analytics</h2>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="users"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="p-stat-teachers">0</span>
+                <span class="stat-label">Total Educators</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="file-text"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="p-stat-materials">0</span>
+                <span class="stat-label">Active Materials</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="award"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="p-stat-quizzes">0</span>
+                <span class="stat-label">Active Quizzes</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="message-square"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="p-stat-feedback">0</span>
+                <span class="stat-label">Feedback Inboxes</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-top: 30px;">
+            <div class="analytics-chart-card">
+              <div class="chart-header">
+                <h3 style="font-size: 1.15rem; font-family: var(--font-display);">Material Distribution by Subject</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Syllabus chapter notes uploaded currently</span>
+              </div>
+              <div class="chart-container" id="p-analytics-chart">
+                <!-- Dynamic -->
+              </div>
+            </div>
+            
+            <div class="analytics-chart-card">
+              <h3 style="font-size: 1.15rem; font-family: var(--font-display); margin-bottom: 12px;">Moderation System Alert</h3>
+              <div id="p-activity-log-box">
+                <!-- Activity summary -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANE: MANAGE TEACHERS -->
+        <div class="dash-pane" id="p-pane-teachers">
+          <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 20px;">
+            <h2 style="font-family: var(--font-display);">Educator Accounts Management</h2>
+            <button class="btn btn-secondary" onclick="openAddTeacherModal()">
+              <i data-lucide="plus-circle" style="width: 16px; height: 16px;"></i> Add Teacher
+            </button>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Teacher Name</th>
+                  <th>Email Login</th>
+                  <th>Assigned Classes</th>
+                  <th>Assigned Subjects</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="p-teachers-table-body">
+                <!-- Dynamic -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PANE: CONTENT APPROVAL -->
+        <div class="dash-pane" id="p-pane-moderation">
+          <h2 style="font-family: var(--font-display); margin-bottom: 8px;">Content Moderation Board</h2>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Approve submitted resources to publish them onto the Student Portal, or remove inappropriate structures.</p>
+          
+          <div id="p-moderation-container">
+            <!-- Dynamic approvals -->
+          </div>
+        </div>
+
+        <!-- PANE: SCHOOL PROFILE SETTINGS -->
+        <div class="dash-pane" id="p-pane-settings">
+          <h2 style="font-family: var(--font-display); margin-bottom: 20px;">School Identity & Profile Settings</h2>
+          
+          <form id="p-settings-form" onsubmit="handleSettingsSubmit(event)" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 30px; border-radius: var(--radius-lg);">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">School Name</label>
+                <input type="text" class="form-control" id="p-set-name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">School Motto</label>
+                <input type="text" class="form-control" id="p-set-motto" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="p-set-phone" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Official Email</label>
+                <input type="email" class="form-control" id="p-set-email" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Campus Address</label>
+              <textarea class="form-control" id="p-set-address" required></textarea>
+            </div>
+            
+            <div style="text-align: right; margin-top: 10px;">
+              <button type="submit" class="btn btn-primary">Save Profile Details</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- PANE: PARENTS FEEDBACK -->
+        <div class="dash-pane" id="p-pane-feedback">
+          <h2 style="font-family: var(--font-display); margin-bottom: 20px;">Parents Feedback Mailbox</h2>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Sender</th>
+                  <th>Email</th>
+                  <th>Feedback Message</th>
+                  <th>Logged Date</th>
+                </tr>
+              </thead>
+              <tbody id="p-feedback-table-body">
+                <!-- Dynamic -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- 8. TEACHER DASHBOARD VIEW -->
+  <!-- ========================================= -->
+  <main class="container page-view" id="teacher-dashboard-view">
+    <div class="dashboard-grid">
+      <aside class="dashboard-sidebar">
+        <div class="dash-menu-title">Educator Portal</div>
+        
+        <div id="t-assigned-classes-display" style="margin-bottom: 20px;">
+          <!-- Injected dynamically -->
+        </div>
+
+        <ul class="dash-nav-list">
+          <li class="dash-nav-item active" onclick="switchTeacherTab('overview')">
+            <i data-lucide="layout-dashboard"></i> Dashboard Home
+          </li>
+          <li class="dash-nav-item" onclick="switchTeacherTab('materials')">
+            <i data-lucide="file-text"></i> Syllabus Notes
+          </li>
+          <li class="dash-nav-item" onclick="switchTeacherTab('videos')">
+            <i data-lucide="video"></i> Video Lessons
+          </li>
+          <li class="dash-nav-item" onclick="switchTeacherTab('quizzes')">
+            <i data-lucide="help-circle"></i> Quizzes Builder
+          </li>
+          <li class="dash-nav-item" onclick="switchTeacherTab('announcements')">
+            <i data-lucide="bell"></i> Class Announcements
+          </li>
+          <li class="dash-nav-item" onclick="switchTeacherTab('performance')">
+            <i data-lucide="bar-chart-2"></i> Student Performance
+          </li>
+        </ul>
+      </aside>
+
+      <div class="dashboard-content">
+        
+        <!-- T-PANE: OVERVIEW -->
+        <div class="dash-pane active" id="t-pane-overview">
+          <h2 style="font-family: var(--font-display); margin-bottom: 20px;">Your Teaching Profile Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="file-text"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="t-stat-materials">0</span>
+                <span class="stat-label">My Study Materials</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="video"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="t-stat-videos">0</span>
+                <span class="stat-label">My Video Classes</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="award"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="t-stat-quizzes">0</span>
+                <span class="stat-label">Quizzes Designed</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i data-lucide="bell"></i></div>
+              <div class="stat-details">
+                <span class="stat-val" id="t-stat-ann">0</span>
+                <span class="stat-label">Class Notices</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sdg-info-banner" style="margin-top: 40px; padding:30px;">
+            <div class="sdg-desc-box">
+              <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px;">UN SDG 4 Teacher Guidelines</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                As a teacher, you have full ownership over creating rich study note pathways. Ensure your documents contain clear headings, and quizzes focus on conceptual clarity. All notes and videos enter moderation before general student visibility.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-PANE: SYLLABUS NOTES -->
+        <div class="dash-pane" id="t-pane-materials">
+          <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: flex-start;">
+            <form id="teacher-material-form" onsubmit="handleMaterialUpload(event)" style="background:var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: var(--radius-lg);">
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">Upload Study Material</h3>
+              <div class="form-group">
+                <label class="form-label">Material Title</label>
+                <input type="text" class="form-control" id="t-mat-title" placeholder="e.g. Chapter 2 Cell Division Notes" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">For Class</label>
+                  <select class="form-control" id="t-mat-class" required>
+                    <!-- Assigned classes -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Subject</label>
+                  <select class="form-control" id="t-mat-subject" required>
+                    <!-- Assigned subjects -->
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Format Type</label>
+                  <select class="form-control" id="t-mat-type" required>
+                    <option value="pdf">PDF Document</option>
+                    <option value="ppt">PPT Presentation</option>
+                    <option value="worksheet">Revision Worksheet</option>
+                    <option value="image">Diagram / Chart</option>
+                    <option value="notes">Chapter Notes</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Select File Reference</label>
+                  <input type="file" class="form-control" id="t-mat-file" style="padding: 7px 14px;" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-secondary" style="width: 100%;">Submit for Review</button>
+            </form>
+
+            <div>
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">My Upload History</h3>
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Title</th>
+                      <th>Subject</th>
+                      <th>Class</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="t-materials-table-body">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-PANE: VIDEOS -->
+        <div class="dash-pane" id="t-pane-videos">
+          <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: flex-start;">
+            <form id="teacher-video-form" onsubmit="handleVideoUpload(event)" style="background:var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: var(--radius-lg);">
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">Submit Video Lesson Link</h3>
+              <div class="form-group">
+                <label class="form-label">Video Title</label>
+                <input type="text" class="form-control" id="t-vid-title" placeholder="e.g. Algebra Basics Part 1" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">For Class</label>
+                  <select class="form-control" id="t-vid-class" required></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Subject</label>
+                  <select class="form-control" id="t-vid-subject" required></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">YouTube Video URL</label>
+                <input type="url" class="form-control" id="t-vid-url" placeholder="https://www.youtube.com/watch?v=..." required>
+              </div>
+              <button type="submit" class="btn btn-secondary" style="width: 100%;">Add Class Stream</button>
+            </form>
+
+            <div>
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">My Lesson Video Streams</h3>
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Title</th>
+                      <th>Subject</th>
+                      <th>Class</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="t-videos-table-body">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-PANE: QUIZZES BUILDER -->
+        <div class="dash-pane" id="t-pane-quizzes">
+          <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 20px;">
+            <h2 style="font-family: var(--font-display);">Dynamic Mock Quizzes</h2>
+            <button class="btn btn-secondary" onclick="openCreateQuizModal()">
+              <i data-lucide="plus-circle" style="width: 16px; height: 16px;"></i> Construct New Quiz
+            </button>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Quiz Topic / Title</th>
+                  <th>Subject</th>
+                  <th>Assigned Class</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="t-quizzes-table-body">
+                <!-- Dynamic -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- T-PANE: CLASS ANNOUNCEMENTS -->
+        <div class="dash-pane" id="t-pane-announcements">
+          <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: flex-start;">
+            <form id="teacher-ann-form" onsubmit="handleAnnouncementCreate(event)" style="background:var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: var(--radius-lg);">
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">Post Class Announcement</h3>
+              <div class="form-group">
+                <label class="form-label">Notice Headline</label>
+                <input type="text" class="form-control" id="t-ann-title" placeholder="e.g. Maths Lab submission rescheduled" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Announce Target</label>
+                <select class="form-control" id="t-ann-class" required></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Notice Description</label>
+                <textarea class="form-control" id="t-ann-desc" placeholder="Details of notices..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-secondary" style="width: 100%;">Publish Announcement</button>
+            </form>
+
+            <div>
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">My Notice Board History</h3>
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Notice Headline</th>
+                      <th>Details</th>
+                      <th>Target</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="t-ann-table-body">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-PANE: STUDENT RESULTS -->
+        <div class="dash-pane" id="t-pane-performance">
+          <h2 style="font-family: var(--font-display); margin-bottom: 8px;">Student Quiz Grades Analytics</h2>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Review real-time scoring data submitted by students taking your custom-built Multiple Choice quizzes.</p>
+          
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Student Name</th>
+                  <th>Assigned Quiz</th>
+                  <th>Score Grade</th>
+                  <th>Attempt Date</th>
+                </tr>
+              </thead>
+              <tbody id="t-performance-table-body">
+                <!-- Dynamic -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================= -->
+  <!-- PORTAL SIGN-IN MODAL -->
+  <!-- ========================================= -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Security Portal Sign In</h3>
+        <button class="toast-close" onclick="closeModal('login-modal')">&times;</button>
+      </div>
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="modal-body">
+          <div style="background-color: var(--primary-light); border:1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); font-size: 0.8rem; margin-bottom: 20px;">
+            <strong style="color: var(--primary); display:block; margin-bottom: 6px;">Demo Test Credentials:</strong>
+            <div style="margin-bottom: 4px;">
+              🔑 <strong>Principal:</strong> <code>principal@prathibha.com</code> / <code>admin123</code>
+            </div>
+            <div>
+              🔑 <strong>Teacher:</strong> <code>suresh.maths@prathibha.com</code> / <code>teacher123</code>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Portal Email Address</label>
+            <input type="email" class="form-control" id="login-email" placeholder="enter your registered email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="login-password" placeholder="••••••••" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('login-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Authenticate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- STUDY MATERIAL PREVIEW MODAL -->
+  <!-- ========================================= -->
+  <div class="modal-overlay" id="material-preview-modal">
+    <div class="modal-window" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);" id="prev-material-title">Material Preview</h3>
+        <button class="toast-close" onclick="closeModal('material-preview-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="prev-material-body">
+        <!-- Dynamic preview goes here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="closeModal('material-preview-modal')">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- PRINCIPAL ADD/EDIT TEACHER MODAL -->
+  <!-- ========================================= -->
+  <div class="modal-overlay" id="teacher-add-modal">
+    <div class="modal-window" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);" id="teacher-modal-title">Create Educator Profile</h3>
+        <button class="toast-close" onclick="closeModal('teacher-add-modal')">&times;</button>
+      </div>
+      <form id="teacher-form" onsubmit="handleTeacherSubmit(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Teacher Name</label>
+              <input type="text" class="form-control" id="teacher-name" placeholder="e.g. Suresh Kumar" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-control" id="teacher-status" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Official Email Login</label>
+              <input type="email" class="form-control" id="teacher-email" placeholder="name.subject@prathibha.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Default Password</label>
+              <input type="text" class="form-control" id="teacher-password" value="teacher123" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Assign Classes (Classes 1 - 10)</label>
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 12px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="1" class="teacher-cls-checkbox"> Class 1
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="2" class="teacher-cls-checkbox"> Class 2
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="3" class="teacher-cls-checkbox"> Class 3
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="4" class="teacher-cls-checkbox"> Class 4
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="5" class="teacher-cls-checkbox"> Class 5
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="6" class="teacher-cls-checkbox"> Class 6
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="7" class="teacher-cls-checkbox"> Class 7
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="8" class="teacher-cls-checkbox"> Class 8
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="9" class="teacher-cls-checkbox"> Class 9
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="10" class="teacher-cls-checkbox"> Class 10
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Assign Syllabus Subjects</label>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Mathematics" class="teacher-sub-checkbox"> Mathematics
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Science" class="teacher-sub-checkbox"> Science
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="English" class="teacher-sub-checkbox"> English
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Social Studies" class="teacher-sub-checkbox"> Social Studies
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Telugu" class="teacher-sub-checkbox"> Telugu
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Hindi" class="teacher-sub-checkbox"> Hindi
+              </label>
+              <label style="font-size: 0.85rem; cursor:pointer; display:flex; align-items:center; gap: 4px;">
+                <input type="checkbox" value="Computer Science" class="teacher-sub-checkbox"> Computer Science
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('teacher-add-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- TEACHER QUIZ CREATOR MODAL -->
+  <!-- ========================================= -->
+  <div class="modal-overlay" id="quiz-create-modal">
+    <div class="modal-window" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Construct Syllabus Revision Quiz</h3>
+        <button class="toast-close" onclick="closeModal('quiz-create-modal')">&times;</button>
+      </div>
+      <form id="q-builder-form" onsubmit="handleQuizSubmit(event)">
+        <div class="modal-body" style="max-height: 60vh;">
+          <div class="form-group">
+            <label class="form-label">Quiz Headline / Topic</label>
+            <input type="text" class="form-control" id="t-quiz-title" placeholder="e.g. Chapter 4 Fractions Revision Quiz" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">For Class</label>
+              <select class="form-control" id="t-quiz-class" required></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select class="form-control" id="t-quiz-subject" required></select>
+            </div>
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+          <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 12px;">
+            <h4 style="font-family: var(--font-display); font-size: 1rem;">Quiz Questions List</h4>
+            <button type="button" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.78rem;" onclick="addQuizBuilderQuestionRow()">+ Add Question</button>
+          </div>
+          
+          <div id="q-builder-questions-list">
+            <!-- Dynamic questions injected -->
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('quiz-create-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish for Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- SCHOLARSHIPS INFO MODAL -->
+  <!-- ========================================= -->
+  <div class="modal-overlay" id="scholarship-modal">
+    <div class="modal-window" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-display);">Government & Meritorious Scholarships</h3>
+        <button class="toast-close" onclick="closeModal('scholarship-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="padding:14px; background-color: var(--primary-light); border-left:4px solid var(--primary); border-radius: var(--radius-sm);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">National Means-Cum-Merit Scholarship (NMMS)</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Offered by the Ministry of Education for Class 8 students with family income under ₹3.5 Lakhs. Covers ₹12,000 yearly for study support till Class 12.</p>
+          </div>
+          
+          <div style="padding:14px; background-color: var(--secondary-light); border-left:4px solid var(--secondary); border-radius: var(--radius-sm);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">National Talent Search Examination (NTSE)</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">A prestigious national-level exam for Class 10 students. Qualified scholars receive monthly stipends for higher secondary, undergraduate, and postgraduate programs.</p>
+          </div>
+
+          <div style="padding:14px; background-color: #fff9db; border-left:4px solid #f59f00; border-radius: var(--radius-sm);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">State Welfare & Post-Matric Scholarships</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Provides complete fee reimbursement and residential allowances for socially backward communities enrolling in Intermediate, ITI, and Polytechnic colleges.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="closeModal('scholarship-modal')">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col" style="max-width: 320px;">
+        <h4 style="color: var(--primary);">Prathibha School</h4>
+        <p style="font-size: 0.82rem; margin-bottom: 12px;">Providing quality education aligned with UN Sustainable Development Goal 4. Centralizing resources to shape future leaders of tomorrow.</p>
+        <small style="display:block; color: var(--text-muted);">Established 1998 • ISO 9001 Certified</small>
+      </div>
+      <div class="footer-col">
+        <h4>Learning Portal</h4>
+        <ul class="footer-links">
+          <li class="footer-link" onclick="window.location.hash = '#materials'">Study Materials</li>
+          <li class="footer-link" onclick="window.location.hash = '#videos'">Video Classes</li>
+          <li class="footer-link" onclick="window.location.hash = '#quizzes'">Daily Quiz</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Career Guidance</h4>
+        <ul class="footer-links">
+          <li class="footer-link" onclick="window.location.hash = '#guidance'">Intermediate Streams</li>
+          <li class="footer-link" onclick="window.location.hash = '#guidance'">Vocational Polytechnic</li>
+          <li class="footer-link" onclick="window.location.hash = '#guidance'">Active Scholarships</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support Hub</h4>
+        <ul class="footer-links">
+          <li class="footer-link" onclick="window.location.hash = '#contact'">Submit Feedback</li>
+          <li class="footer-link" onclick="window.location.hash = '#contact'">FAQs & Guidelines</li>
+          <li class="footer-link" onclick="openModal('login-modal')">Portal Login</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span class="footer-copyright">© 2026 Prathibha High School. All Rights Reserved.</span>
+      <span class="footer-sdg-motto">Supporting United Nations SDG 4: Quality Education</span>
+    </div>
+  </footer>
+
+  <!-- ================================================================= -->
+  <!-- 💾 DATABASE MODULE ENGINE (Mock MongoDB in LocalStorage) -->
+  <!-- ================================================================= -->
+  <script>
+    const DB_PREFIX = "prathibha_lms_v2_";
+
+    // Seed Data
+    const DEFAULT_TEACHERS = [
+      {
+        id: "t_suresh",
+        name: "Suresh Kumar",
+        email: "suresh.maths@prathibha.com",
+        password: "teacher123",
+        assignedClasses: ["8", "9", "10"],
+        assignedSubjects: ["Mathematics", "Computer Science"],
+        status: "Active"
+      },
+      {
+        id: "t_geetha",
+        name: "Geetha Rani",
+        email: "geetha.science@prathibha.com",
+        password: "teacher123",
+        assignedClasses: ["6", "7", "8"],
+        assignedSubjects: ["Science"],
+        status: "Active"
+      },
+      {
+        id: "t_ramesh",
+        name: "Ramesh Sharma",
+        email: "ramesh.english@prathibha.com",
+        password: "teacher123",
+        assignedClasses: ["1", "2", "3", "4", "5", "6"],
+        assignedSubjects: ["English", "Social Studies"],
+        status: "Active"
+      }
+    ];
+
+    const DEFAULT_MATERIALS = [];
+    const DEFAULT_VIDEOS = [];
+
+    const DEFAULT_QUIZZES = [
+      {
+        id: "q_1",
+        title: "Class 10 - Trigonometric Identities Quiz",
+        subject: "Mathematics",
+        classNum: "10",
+        questions: [
+          {
+            question: "What is the value of sin²θ + cos²θ?",
+            options: ["0", "1", "-1", "2"],
+            correctAnswer: "1"
+          },
+          {
+            question: "If sin θ = 3/5, what is the value of cos θ?",
+            options: ["4/5", "3/4", "5/3", "2/5"],
+            correctAnswer: "4/5"
+          },
+          {
+            question: "What is 1 + tan²θ equal to?",
+            options: ["sin²θ", "cos²θ", "sec²θ", "cosec²θ"],
+            correctAnswer: "sec²θ"
+          }
+        ],
+        createdBy: "t_suresh",
+        isApproved: true
+      },
+      {
+        id: "q_2",
+        title: "Class 8 - Plant Cell & Animal Cell Anatomy Quiz",
+        subject: "Science",
+        classNum: "8",
+        questions: [
+          {
+            question: "Which organelle is known as the powerhouse of the cell?",
+            options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Apparatus"],
+            correctAnswer: "Mitochondria"
+          },
+          {
+            question: "Which of the following is present ONLY in plant cells?",
+            options: ["Cell Membrane", "Cell Wall", "Cytoplasm", "Nucleus"],
+            correctAnswer: "Cell Wall"
+          },
+          {
+            question: "What green pigment is responsible for photosynthesis?",
+            options: ["Chlorophyll", "Hemoglobin", "Carotene", "Xanthophyll"],
+            correctAnswer: "Chlorophyll"
+          }
+        ],
+        createdBy: "t_geetha",
+        isApproved: true
+      },
+      {
+        id: "q_3",
+        title: "Class 6 - Perfect Tenses Comprehension",
+        subject: "English",
+        classNum: "6",
+        questions: [
+          {
+            question: "Choose the correct Present Perfect form: 'She ______ her homework already.'",
+            options: ["finish", "finished", "has finished", "had finished"],
+            correctAnswer: "has finished"
+          },
+          {
+            question: "Identify the tense: 'By next week, we will have lived here for five years.'",
+            options: ["Future Perfect", "Present Perfect", "Past Perfect", "Simple Future"],
+            correctAnswer: "Future Perfect"
+          }
+        ],
+        createdBy: "t_ramesh",
+        isApproved: true
+      }
+    ];
+
+    const DEFAULT_ANNOUNCEMENTS = [
+      {
+        id: "a_1",
+        title: "Welcome to Prathibha High School Digital Learning Hub",
+        description: "In alignment with United Nations SDG 4 (Quality Education), our school is proud to introduce our centralized portal. Students can now access high-quality study notes, interactive video sessions, and assignments, while Teachers and the Principal manage all resources seamlessly. Let's learn today and lead tomorrow!",
+        createdBy: "Principal (Admin)",
+        date: "2026-06-01",
+        classNum: "All"
+      },
+      {
+        id: "a_2",
+        title: "First Term Examination Timetable Released",
+        description: "The term-end examinations for Classes 1 to 10 are scheduled to begin from June 15, 2026. Detailed schedules for each class have been uploaded. Please consult your respective subject teachers for revision worksheets and doubt clearing.",
+        createdBy: "Principal (Admin)",
+        date: "2026-06-01",
+        classNum: "All"
+      },
+      {
+        id: "a_3",
+        title: "Mathematics Revision Session for Class 10",
+        description: "A special online live doubt-clearing session for Class 10 Trigonometry will take place this Thursday at 4:00 PM. Please complete the quiz on trigonometric identities before joining the session.",
+        createdBy: "Suresh Kumar",
+        date: "2026-05-29",
+        classNum: "10"
+      },
+      {
+        id: "a_4",
+        title: "Science Lab Project: Cell Models Submission",
+        description: "All Class 8 students must upload photo submissions of their 3D animal/plant cell models in the study materials section by Saturday. Late entries will not be recorded in internal grades.",
+        createdBy: "Geetha Rani",
+        date: "2026-05-30",
+        classNum: "8"
+      }
+    ];
+
+    const DEFAULT_SETTINGS = {
+      schoolName: "Prathibha High School",
+      motto: "Learn Today, Lead Tomorrow",
+      address: "Plot 45-48, Education Enclave, Near Science Center, Hyderabad, TS, India",
+      phone: "+91 40 2345 6789",
+      email: "info@prathibhaschool.edu.in",
+      logoText: "PHS",
+      visitorCount: 1248
+    };
+
+    const DEFAULT_STUDENTS = [
+      {
+        id: "st_anil",
+        name: "Anil Reddy",
+        email: "anil@student.com",
+        password: "student123",
+        classNum: "10",
+        quizScores: [
+          {
+            quizId: "q_1",
+            quizTitle: "Trigonometric Identities Quiz",
+            score: 3,
+            totalQuestions: 3,
+            date: "2026-06-01"
+          }
+        ]
+      }
+    ];
+
+    const DEFAULT_FEEDBACK = [
+      {
+        id: "f_1",
+        name: "Rajesh Varma",
+        classNum: "10",
+        email: "rajesh.parent@gmail.com",
+        message: "This portal is a fantastic initiative! It has helped my son revise for the Class 10 board exams extremely effectively. The quizzes give instant feedback, which is super helpful.",
+        date: "2026-06-01"
+      }
+    ];
+
+    class LocalCollection {
+      constructor(name, defaultData = []) {
+        this.key = DB_PREFIX + name;
+        if (!localStorage.getItem(this.key)) {
+          this._save(defaultData);
+        }
+      }
+      _get() { return JSON.parse(localStorage.getItem(this.key) || "[]"); }
+      _save(data) { localStorage.setItem(this.key, JSON.stringify(data)); }
+      find(criteria = {}) {
+        const records = this._get();
+        return records.filter(item => {
+          for (let key in criteria) {
+            if (Array.isArray(item[key])) {
+              if (!item[key].includes(criteria[key])) return false;
+            } else if (item[key] !== criteria[key]) {
+              return false;
+            }
+          }
+          return true;
+        });
+      }
+      findOne(criteria = {}) {
+        const matches = this.find(criteria);
+        return matches.length > 0 ? matches[0] : null;
+      }
+      insertOne(doc) {
+        const records = this._get();
+        if (!doc.id) { doc.id = "id_" + Math.random().toString(36).substr(2, 9); }
+        records.push(doc);
+        this._save(records);
+        return doc;
+      }
+      updateOne(criteria, updates) {
+        const records = this._get();
+        let updatedCount = 0;
+        const nextRecords = records.map(item => {
+          let isMatch = true;
+          for (let key in criteria) {
+            if (item[key] !== criteria[key]) { isMatch = false; break; }
+          }
+          if (isMatch) { updatedCount++; return { ...item, ...updates }; }
+          return item;
+        });
+        this._save(nextRecords);
+        return updatedCount;
+      }
+      deleteOne(criteria) {
+        const records = this._get();
+        const filtered = records.filter(item => {
+          let isMatch = true;
+          for (let key in criteria) {
+            if (item[key] !== criteria[key]) { isMatch = false; break; }
+          }
+          return !isMatch;
+        });
+        const deletedCount = records.length - filtered.length;
+        this._save(filtered);
+        return deletedCount;
+      }
+      getRaw() { return this._get(); }
+    }
+
+    const db = {
+      teachers: new LocalCollection("teachers", DEFAULT_TEACHERS),
+      materials: new LocalCollection("materials", DEFAULT_MATERIALS),
+      videos: new LocalCollection("videos", DEFAULT_VIDEOS),
+      quizzes: new LocalCollection("quizzes", DEFAULT_QUIZZES),
+      announcements: new LocalCollection("announcements", DEFAULT_ANNOUNCEMENTS),
+      students: new LocalCollection("students", DEFAULT_STUDENTS),
+      feedback: new LocalCollection("feedback", DEFAULT_FEEDBACK),
+      settings: {
+        get() {
+          const data = localStorage.getItem(DB_PREFIX + "settings");
+          if (!data) {
+            localStorage.setItem(DB_PREFIX + "settings", JSON.stringify(DEFAULT_SETTINGS));
+            return DEFAULT_SETTINGS;
+          }
+          return JSON.parse(data);
+        },
+        update(updates) {
+          const current = this.get();
+          const next = { ...current, ...updates };
+          localStorage.setItem(DB_PREFIX + "settings", JSON.stringify(next));
+          return next;
+        },
+        incrementVisitor() {
+          const current = this.get();
+          current.visitorCount = (current.visitorCount || 0) + 1;
+          localStorage.setItem(DB_PREFIX + "settings", JSON.stringify(current));
+          return current.visitorCount;
+        }
+      }
+    };
+    window.db = db;
+  </script>
+
+  <!-- ================================================================= -->
+  <!-- 🔐 ROLE-BASED AUTHENTICATION MODULE -->
+  <!-- ================================================================= -->
+  <script>
+    const SESSION_KEY = "prathibha_session";
+
+    const auth = {
+      login(email, password) {
+        email = email.toLowerCase().trim();
+        
+        if (email === "principal@prathibha.com" && password === "admin123") {
+          const session = {
+            token: "mock-jwt-principal-" + Date.now(),
+            user: {
+              id: "principal",
+              name: "Dr. K. S. Rao (Principal)",
+              email: "principal@prathibha.com",
+              role: "principal"
+            }
+          };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          return { success: true, user: session.user };
+        }
+
+        const teacher = window.db.teachers.findOne({ email: email, password: password });
+        if (teacher) {
+          if (teacher.status !== "Active") {
+            return { success: false, message: "Your teacher account is deactivated. Please contact the Principal." };
+          }
+          const session = {
+            token: "mock-jwt-teacher-" + teacher.id + "-" + Date.now(),
+            user: {
+              id: teacher.id,
+              name: teacher.name,
+              email: teacher.email,
+              role: "teacher",
+              assignedClasses: teacher.assignedClasses,
+              assignedSubjects: teacher.assignedSubjects
+            }
+          };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          return { success: true, user: session.user };
+        }
+
+        const student = window.db.students.findOne({ email: email, password: password });
+        if (student) {
+          const session = {
+            token: "mock-jwt-student-" + student.id + "-" + Date.now(),
+            user: {
+              id: student.id,
+              name: student.name,
+              email: student.email,
+              role: "student",
+              classNum: student.classNum
+            }
+          };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          return { success: true, user: session.user };
+        }
+
+        return { success: false, message: "Invalid email or password. Please try again." };
+      },
+
+      logout() {
+        localStorage.removeItem(SESSION_KEY);
+        return true;
+      },
+
+      getCurrentUser() {
+        const sessionData = localStorage.getItem(SESSION_KEY);
+        if (!sessionData) return null;
+        try {
+          const session = JSON.parse(sessionData);
+          return session.user;
+        } catch (e) {
+          this.logout();
+          return null;
+        }
+      },
+
+      isAuthenticated() { return this.getCurrentUser() !== null; },
+      isPrincipal() { const u = this.getCurrentUser(); return u && u.role === "principal"; },
+      isTeacher() { const u = this.getCurrentUser(); return u && u.role === "teacher"; },
+      isStudent() { const u = this.getCurrentUser(); return u && u.role === "student"; }
+    };
+    window.auth = auth;
+  </script>
+
+  <!-- ================================================================= -->
+  <!-- ⚙️ SPA ROUTER, METRICS AND UI RENDERING SYSTEM -->
+  <!-- ================================================================= -->
+  <script>
+    // --- GLOBAL APPLICATION STATE ---
+    const appState = {
+      currentRole: "student",
+      activePage: "#home",
+      activeDashboardTab: "overview",
+      activeQuiz: null,
+      currentQuestionIndex: 0,
+      quizAnswers: [],
+      quizScore: 0,
+      editingTeacherId: null,
+      stats: { teachersCount: 0, materialsCount: 0, videosCount: 0, quizzesCount: 0 }
+    };
+
+    // --- INITIALIZATION ---
+    document.addEventListener("DOMContentLoaded", () => {
+      db.settings.incrementVisitor();
+      
+      const savedTheme = localStorage.getItem("prathibha_theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      
+      window.addEventListener("hashchange", router);
+      router();
+      
+      if (window.lucide) lucide.createIcons();
+      setupGlobalEventListeners();
+    });
+
+    // --- DYNAMIC TOAST SYSTEM ---
+    function showToast(title, text, type = "info") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = `toast-msg ${type}`;
+      
+      let iconName = "info";
+      if (type === "success") iconName = "check-circle";
+      if (type === "danger") iconName = "alert-triangle";
+      if (type === "warning") iconName = "alert-circle";
+
+      toast.innerHTML = `
+        <i data-lucide="${iconName}" class="toast-icon"></i>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-text">${text}</div>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+      `;
+      
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons();
+
+      setTimeout(() => {
+        toast.style.transform = "translateX(120%)";
+        setTimeout(() => toast.remove(), 400);
+      }, 4500);
+    }
+
+    // --- DARK MODE TOGGLE ---
+    function toggleDarkMode() {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const targetTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", targetTheme);
+      localStorage.setItem("prathibha_theme", targetTheme);
+      
+      renderHeader();
+      showToast("Theme Updated", `Switched to ${targetTheme} theme mode successfully.`, "success");
+    }
+
+    // --- GLOBAL EVENT LISTENERS ---
+    function setupGlobalEventListeners() {
+      document.querySelectorAll(".modal-overlay").forEach(overlay => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) closeModal(overlay.id);
+        });
+      });
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add("active");
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove("active");
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll(".modal-overlay").forEach(m => m.classList.remove("active"));
+    }
+
+    // --- ROUTER ENGINE ---
+    function router() {
+      const hash = window.location.hash || "#home";
+      appState.activePage = hash;
+      
+      const currentUser = auth.getCurrentUser();
+      appState.currentRole = currentUser ? currentUser.role : "student";
+      
+      // Guards & RBAC Checks
+      if (hash === "#principal-dashboard" && !auth.isPrincipal()) {
+        window.location.hash = "#home";
+        showToast("Access Denied", "Only the Principal can access the Admin Dashboard.", "danger");
+        return;
+      }
+      
+      if (hash === "#teacher-dashboard" && !auth.isTeacher()) {
+        window.location.hash = "#home";
+        showToast("Access Denied", "Only teachers can access the Educator Dashboard.", "danger");
+        return;
+      }
+      
+      document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("onclick") && item.getAttribute("onclick").includes(hash)) {
+          item.classList.add("active");
+        }
+      });
+
+      renderHeader();
+      closeAllModals();
+      
+      document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active"));
+      
+      let targetViewId = hash.replace("#", "") + "-view";
+      if (hash.startsWith("#principal-dashboard")) targetViewId = "principal-dashboard-view";
+      if (hash.startsWith("#teacher-dashboard")) targetViewId = "teacher-dashboard-view";
+      
+      const targetView = document.getElementById(targetViewId);
+      if (targetView) {
+        targetView.classList.add("active");
+        
+        if (hash === "#home") renderHome();
+        else if (hash === "#materials") renderMaterials();
+        else if (hash === "#videos") renderVideos();
+        else if (hash === "#quizzes") renderQuizzes();
+        else if (hash === "#guidance") renderCareerGuidance();
+        else if (hash === "#contact") renderContact();
+        else if (hash.startsWith("#principal-dashboard")) renderPrincipalDashboard();
+        else if (hash.startsWith("#teacher-dashboard")) renderTeacherDashboard();
+      } else {
+        document.getElementById("home-view").classList.add("active");
+        renderHome();
+      }
+      
+      if (window.lucide) lucide.createIcons();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // --- DYNAMIC HEADER / NAVIGATION ---
+    function renderHeader() {
+      const currentUser = auth.getCurrentUser();
+      const settings = db.settings.get();
+      
+      const brandContainer = document.querySelector(".logo-block");
+      if (brandContainer) {
+        brandContainer.innerHTML = `
+          <div class="school-logo">${settings.logoText || "PHS"}</div>
+          <div class="brand-text">
+            <span class="school-name">${settings.schoolName}</span>
+            <span class="school-motto">"${settings.motto}"</span>
+          </div>
+        `;
+      }
+      
+      const linksContainer = document.getElementById("nav-links-container");
+      if (linksContainer) {
+        let linksHtml = `
+          <a class="nav-item ${appState.activePage === '#home' ? 'active' : ''}" href="#home">Home</a>
+          <a class="nav-item ${appState.activePage === '#materials' ? 'active' : ''}" href="#materials">Study Materials</a>
+          <a class="nav-item ${appState.activePage === '#videos' ? 'active' : ''}" href="#videos">Video Lessons</a>
+          <a class="nav-item ${appState.activePage === '#quizzes' ? 'active' : ''}" href="#quizzes">Daily Quiz</a>
+          <a class="nav-item ${appState.activePage === '#guidance' ? 'active' : ''}" href="#guidance">Career Guidance</a>
+          <a class="nav-item ${appState.activePage === '#contact' ? 'active' : ''}" href="#contact">Contact Us</a>
+        `;
+        
+        if (auth.isPrincipal()) {
+          linksHtml += `<a class="nav-item ${appState.activePage.startsWith('#principal-dashboard') ? 'active' : ''}" href="#principal-dashboard" style="font-weight: 700; color: var(--secondary);">Principal Dash</a>`;
+        }
+        if (auth.isTeacher()) {
+          linksHtml += `<a class="nav-item ${appState.activePage.startsWith('#teacher-dashboard') ? 'active' : ''}" href="#teacher-dashboard" style="font-weight: 700; color: var(--secondary);">Teacher Dash</a>`;
+        }
+        linksContainer.innerHTML = linksHtml;
+      }
+      
+      const authContainer = document.getElementById("nav-auth-container");
+      if (authContainer) {
+        if (currentUser) {
+          authContainer.innerHTML = `
+            <div class="user-widget">
+              <span class="user-badge ${currentUser.role}">${currentUser.role}</span>
+              <span class="nav-item" style="font-weight: 600;">Hi, ${currentUser.name.split(" ")[0]}</span>
+              <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" onclick="handleLogout()">Logout</button>
+            </div>
+          `;
+        } else {
+          authContainer.innerHTML = `
+            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.88rem;" onclick="openModal('login-modal')">Portal Sign In</button>
+          `;
+        }
+      }
+
+      const visitorCountElement = document.getElementById("visitor-count-pill");
+      if (visitorCountElement) {
+        visitorCountElement.innerText = settings.visitorCount || 100;
+      }
+    }
+
+    // --- LOGIN & LOGOUT ---
+    function handleLogin(event) {
+      event.preventDefault();
+      const emailInput = document.getElementById("login-email").value;
+      const passwordInput = document.getElementById("login-password").value;
+      
+      const result = auth.login(emailInput, passwordInput);
+      
+      if (result.success) {
+        closeModal("login-modal");
+        document.getElementById("login-form").reset();
+        showToast("Welcome Back!", `Signed in successfully as ${result.user.name}.`, "success");
+        
+        if (result.user.role === "principal") {
+          window.location.hash = "#principal-dashboard";
+        } else if (result.user.role === "teacher") {
+          window.location.hash = "#teacher-dashboard";
+        } else {
+          window.location.hash = "#home";
+        }
+      } else {
+        showToast("Authentication Failed", result.message || "Invalid credentials.", "danger");
+      }
+    }
+
+    function handleLogout() {
+      auth.logout();
+      window.location.hash = "#home";
+      showToast("Logged Out", "You have successfully signed out of the learning hub.", "info");
+    }
+
+    // --- RENDER: HOME VIEW ---
+    function renderHome() {
+      const teachers = db.teachers.find();
+      const materials = db.materials.find({ isApproved: true });
+      const quizzes = db.quizzes.find({ isApproved: true });
+      const videos = db.videos.find({ isApproved: true });
+      
+      appState.stats.teachersCount = teachers.length;
+      appState.stats.materialsCount = materials.length;
+      appState.stats.quizzesCount = quizzes.length;
+      appState.stats.videosCount = videos.length;
+      
+      animateCounter("home-stat-teachers", teachers.length);
+      animateCounter("home-stat-materials", materials.length);
+      animateCounter("home-stat-quizzes", quizzes.length);
+      animateCounter("home-stat-videos", videos.length);
+      
+      const homeAnnounceContainer = document.getElementById("home-announcements-container");
+      if (homeAnnounceContainer) {
+        const list = db.announcements.getRaw().slice(-3).reverse();
+        if (list.length === 0) {
+          homeAnnounceContainer.innerHTML = `<div class="empty-state">No announcements uploaded yet.</div>`;
+        } else {
+          homeAnnounceContainer.innerHTML = list.map(item => `
+            <div class="home-ann-card">
+              <div class="home-ann-info">
+                <h4>${item.title}</h4>
+                <p>${item.description}</p>
+                <small style="color: var(--primary); font-weight: 600;">Posted by: ${item.createdBy}</small>
+              </div>
+              <div class="home-ann-date">${item.date}</div>
+            </div>
+          `).join("");
+        }
+      }
+    }
+
+    function animateCounter(id, targetValue) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      
+      let currentVal = 0;
+      const duration = 1200;
+      const steps = 40;
+      const stepTime = duration / steps;
+      const increment = targetValue / steps;
+      
+      clearInterval(element.timerId);
+      
+      element.timerId = setInterval(() => {
+        currentVal += increment;
+        if (currentVal >= targetValue) {
+          element.innerText = targetValue + "+";
+          clearInterval(element.timerId);
+        } else {
+          element.innerText = Math.floor(currentVal) + "+";
+        }
+      }, stepTime);
+    }
+
+    // --- RENDER: STUDY MATERIALS ---
+    function renderMaterials() {
+      const searchInput = document.getElementById("m-search").value.toLowerCase();
+      const classFilter = document.getElementById("m-class-filter").value;
+      const subjectFilter = document.getElementById("m-subject-filter").value;
+      const typeFilter = document.getElementById("m-type-filter").value;
+      
+      let materials = db.materials.find({ isApproved: true });
+      
+      if (searchInput) {
+        materials = materials.filter(m => {
+          const teacherObj = db.teachers.findOne({ id: m.uploadedBy }) || { name: "Principal" };
+          return m.title.toLowerCase().includes(searchInput) || 
+                 m.subject.toLowerCase().includes(searchInput) ||
+                 teacherObj.name.toLowerCase().includes(searchInput);
+        });
+      }
+      if (classFilter) materials = materials.filter(m => m.classNum === classFilter);
+      if (subjectFilter) materials = materials.filter(m => m.subject === subjectFilter);
+      if (typeFilter) materials = materials.filter(m => m.fileType === typeFilter);
+      
+      const container = document.getElementById("materials-cards-grid");
+      if (!container) return;
+      
+      if (materials.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i data-lucide="folder-open" class="empty-state-icon"></i>
+            <h3>No Study Materials Found</h3>
+            <p>Try clearing your search query or choosing alternative filters.</p>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+      
+      container.innerHTML = materials.map(m => {
+        const teacher = db.teachers.findOne({ id: m.uploadedBy }) || { name: "Principal (Admin)" };
+        let fileIcon = "file-text";
+        if (m.fileType === "pdf") fileIcon = "book-open";
+        if (m.fileType === "ppt") fileIcon = "presentation";
+        if (m.fileType === "worksheet") fileIcon = "edit-3";
+        if (m.fileType === "image") fileIcon = "image";
+        
+        return `
+          <div class="material-card ${m.fileType}">
+            <div class="mat-card-header">
+              <div class="mat-type-icon">
+                <i data-lucide="${fileIcon}"></i>
+              </div>
+              <span class="mat-class-badge">Class ${m.classNum}</span>
+            </div>
+            <h4 class="mat-card-title">${m.title}</h4>
+            <div class="mat-meta-info">
+              <span class="mat-meta-item"><i data-lucide="tag" style="width:12px;height:12px;"></i> ${m.subject}</span>
+              <span class="mat-meta-item"><i data-lucide="hard-drive" style="width:12px;height:12px;"></i> ${m.fileSize}</span>
+            </div>
+            <div class="mat-card-footer">
+              <div class="mat-author">
+                <span style="font-size:0.7rem;display:block;color:var(--text-muted);">Uploaded By:</span>
+                ${teacher.name}
+              </div>
+              <div class="mat-actions">
+                <button class="btn-icon-only" onclick="previewMaterial('${m.id}')" title="Preview"><i data-lucide="eye" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-only" onclick="downloadMaterial('${m.title}')" title="Download"><i data-lucide="download" style="width:16px;height:16px;"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function previewMaterial(id) {
+      const item = db.materials.findOne({ id: id });
+      if (!item) return;
+      
+      const modal = document.getElementById("material-preview-modal");
+      const title = document.getElementById("prev-material-title");
+      const body = document.getElementById("prev-material-body");
+      
+      if (modal && title && body) {
+        title.innerText = item.title;
+        body.innerHTML = `
+          <div style="text-align: center; padding: 20px 0;">
+            <i data-lucide="file-check" style="width: 60px; height: 60px; color: var(--secondary); margin-bottom: 12px;"></i>
+            <h4>Interactive Preview Mode</h4>
+            <p style="color: var(--text-muted); font-size: 0.88rem; max-width: 320px; margin: 6px auto 20px auto;">
+              This study notes sheet contains textbook solutions, revision exercises, and illustrative figures.
+            </p>
+            <div style="background-color: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: left; font-family: monospace; font-size: 0.8rem; overflow-x: auto;">
+              <strong>[Document Type]</strong>: ${item.fileType.toUpperCase()}<br/>
+              <strong>[Document Size]</strong>: ${item.fileSize}<br/>
+              <strong>[Status]</strong>: Verified Active Security Signed<br/>
+              <strong>[Verification Hash]</strong>: SHA256-${Math.random().toString(36).substr(2, 16)}
+            </div>
+          </div>
+        `;
+        openModal("material-preview-modal");
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function downloadMaterial(title) {
+      showToast("Download Commenced", `"${title}" has been added to downloads queue.`, "success");
+    }
+
+    // --- RENDER: VIDEOS ---
+    function renderVideos() {
+      const searchInput = document.getElementById("v-search").value.toLowerCase();
+      const classFilter = document.getElementById("v-class-filter").value;
+      const subjectFilter = document.getElementById("v-subject-filter").value;
+      
+      let videos = db.videos.find({ isApproved: true });
+      
+      if (searchInput) {
+        videos = videos.filter(v => v.title.toLowerCase().includes(searchInput) || v.subject.toLowerCase().includes(searchInput));
+      }
+      if (classFilter) videos = videos.filter(v => v.classNum === classFilter);
+      if (subjectFilter) videos = videos.filter(v => v.subject === subjectFilter);
+      
+      const container = document.getElementById("videos-cards-grid");
+      if (!container) return;
+      
+      if (videos.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i data-lucide="video" class="empty-state-icon"></i>
+            <h3>No Video Lessons Found</h3>
+            <p>Teachers are constantly creating video content. Check back shortly!</p>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+      
+      container.innerHTML = videos.map(v => {
+        const teacher = db.teachers.findOne({ id: v.uploadedBy }) || { name: "Principal (Admin)" };
+        return `
+          <div class="video-card">
+            <div class="video-player-container">
+              <iframe src="${v.videoUrl}" allowfullscreen></iframe>
+            </div>
+            <div class="video-info-box">
+              <div class="video-category">
+                <span class="vid-badge class">Class ${v.classNum}</span>
+                <span class="vid-badge">${v.subject}</span>
+              </div>
+              <h4 class="video-title">${v.title}</h4>
+              <div class="video-meta">
+                <span>By: ${teacher.name}</span>
+                <span style="display: inline-flex; align-items:center; gap: 4px; color: var(--color-success);">
+                  <i data-lucide="verified" style="width: 14px; height: 14px;"></i> Verified
+                </span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // --- RENDER: QUIZZES ---
+    function renderQuizzes() {
+      const container = document.getElementById("quiz-cards-grid");
+      if (!container) return;
+      
+      const quizzes = db.quizzes.find({ isApproved: true });
+      
+      if (quizzes.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i data-lucide="award" class="empty-state-icon"></i>
+            <h3>No Quizzes Published</h3>
+            <p>Ask your class teacher to publish multiple-choice revision quizzes for your syllabus.</p>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+      
+      container.innerHTML = quizzes.map(q => `
+        <div class="quiz-card">
+          <div class="quiz-card-head">
+            <span class="vid-badge">Class ${q.classNum}</span>
+            <span class="vid-badge class">${q.subject}</span>
+          </div>
+          <h3 class="quiz-title">${q.title}</h3>
+          <div class="quiz-stat-pill">
+            <i data-lucide="help-circle" style="width: 14px; height: 14px;"></i>
+            ${q.questions.length} Multiple Choice Questions
+          </div>
+          <div class="quiz-card-footer">
+            <span style="font-size: 0.8rem; font-weight: 500; color: var(--text-muted);">Instant Grading Enabled</span>
+            <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="startQuiz('${q.id}')">Start Quiz</button>
+          </div>
+        </div>
+      `).join("");
+      
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // --- QUIZ GAMEPLAY ENGINE ---
+    function startQuiz(quizId) {
+      const quiz = db.quizzes.findOne({ id: quizId });
+      if (!quiz) return;
+      
+      appState.activeQuiz = quiz;
+      appState.currentQuestionIndex = 0;
+      appState.quizAnswers = [];
+      appState.quizScore = 0;
+      
+      document.getElementById("quiz-intro-section").style.display = "none";
+      document.getElementById("quiz-playing-portal").style.display = "block";
+      document.getElementById("quiz-results-portal").style.display = "none";
+      
+      renderActiveQuestion();
+    }
+
+    function renderActiveQuestion() {
+      const quiz = appState.activeQuiz;
+      const qIndex = appState.currentQuestionIndex;
+      
+      if (qIndex >= quiz.questions.length) {
+        finishQuiz();
+        return;
+      }
+      
+      const question = quiz.questions[qIndex];
+      const progressPercent = (qIndex / quiz.questions.length) * 100;
+      document.getElementById("quiz-progress-fill").style.width = `${progressPercent}%`;
+      document.getElementById("quiz-progress-text").innerText = `Question ${qIndex + 1} of ${quiz.questions.length}`;
+      
+      const qContainer = document.getElementById("quiz-active-q-block");
+      qContainer.innerHTML = `
+        <div class="quiz-q-num">Question ${qIndex + 1}</div>
+        <div class="quiz-q-text">${question.question}</div>
+        <div class="quiz-options-list">
+          ${question.options.map((opt, i) => `
+            <label class="quiz-option-label" id="opt-label-${i}" onclick="selectQuizOption(${i})">
+              <input type="radio" name="active-q-choice" value="${opt}" class="quiz-option-input" />
+              ${opt}
+            </label>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function selectQuizOption(index) {
+      document.querySelectorAll(".quiz-option-label").forEach(lbl => lbl.classList.remove("selected"));
+      
+      const targetLabel = document.getElementById(`opt-label-${index}`);
+      if (targetLabel) {
+        targetLabel.classList.add("selected");
+        const radio = targetLabel.querySelector("input");
+        if (radio) radio.checked = true;
+      }
+    }
+
+    function submitQuestionAnswer() {
+      const selectedRadio = document.querySelector('input[name="active-q-choice"]:checked');
+      if (!selectedRadio) {
+        showToast("Choice Required", "Please select an answer choice before moving forward.", "warning");
+        return;
+      }
+      
+      const answer = selectedRadio.value;
+      appState.quizAnswers.push(answer);
+      
+      const correct = appState.activeQuiz.questions[appState.currentQuestionIndex].correctAnswer;
+      if (answer === correct) {
+        appState.quizScore++;
+      }
+      
+      appState.currentQuestionIndex++;
+      renderActiveQuestion();
+    }
+
+    function finishQuiz() {
+      const quiz = appState.activeQuiz;
+      const score = appState.quizScore;
+      const total = quiz.questions.length;
+      const pct = Math.round((score / total) * 100);
+      
+      const currentUser = auth.getCurrentUser();
+      if (currentUser && currentUser.role === "student") {
+        const student = db.students.findOne({ id: currentUser.id });
+        if (student) {
+          student.quizScores = student.quizScores || [];
+          student.quizScores.push({
+            quizId: quiz.id,
+            quizTitle: quiz.title,
+            score: score,
+            totalQuestions: total,
+            date: new Date().toISOString().split("T")[0]
+          });
+          db.students.updateOne({ id: currentUser.id }, { quizScores: student.quizScores });
+        }
+      }
+      
+      document.getElementById("quiz-playing-portal").style.display = "none";
+      document.getElementById("quiz-results-portal").style.display = "block";
+      
+      const resultsContainer = document.getElementById("quiz-results-portal");
+      let reviewHtml = quiz.questions.map((q, qIdx) => {
+        const studentAnswer = appState.quizAnswers[qIdx];
+        const isCorrect = studentAnswer === q.correctAnswer;
+        
+        return `
+          <div class="quiz-review-q-card ${isCorrect ? 'correct' : 'wrong'}">
+            <h4 style="font-size: 0.95rem; margin-bottom: 10px;">Question ${qIdx + 1}: ${q.question}</h4>
+            <div class="review-choices">
+              ${q.options.map(opt => {
+                let classList = "";
+                let matchText = "";
+                if (opt === q.correctAnswer) {
+                  classList = "correct-ans";
+                  matchText = " ✓ (Correct Answer)";
+                } else if (opt === studentAnswer && !isCorrect) {
+                  classList = "selected-wrong";
+                  matchText = " ✗ (Your Answer)";
+                }
+                return `
+                  <div class="choice-pill ${classList}">
+                    <span>${opt}</span>
+                    <span style="font-weight:700; font-size:0.72rem;">${matchText}</span>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      resultsContainer.innerHTML = `
+        <div class="quiz-play-wrapper" style="max-width: 720px;">
+          <div class="quiz-result-scorecard">
+            <div class="score-circle">
+              <span class="score-big">${pct}%</span>
+              <span class="score-total">${score} / ${total} Correct</span>
+            </div>
+            <h3 class="score-msg">${pct >= 70 ? 'Excellent Performance!' : pct >= 40 ? 'Good Effort!' : 'Keep Practicing!'}</h3>
+            <p class="score-desc">You scored ${score} out of ${total} marks. Review details below.</p>
+          </div>
+          <h3 style="margin-bottom:20px; font-family:var(--font-display);">Detailed Quiz Review</h3>
+          <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:30px;">
+            ${reviewHtml}
+          </div>
+          <div style="text-align: center;">
+            <button class="btn btn-primary" onclick="exitQuiz()">Exit & Back to Quizzes</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function exitQuiz() {
+      appState.activeQuiz = null;
+      document.getElementById("quiz-intro-section").style.display = "block";
+      document.getElementById("quiz-playing-portal").style.display = "none";
+      document.getElementById("quiz-results-portal").style.display = "none";
+      renderQuizzes();
+    }
+
+    // --- RENDER: GUIDANCE & CONTACT ---
+    function renderCareerGuidance() {}
+    function showScholarshipModal() { openModal("scholarship-modal"); }
+    function renderContact() {}
+
+    function handleFeedbackSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("feed-name").value;
+      const classNum = document.getElementById("feed-class").value;
+      const email = document.getElementById("feed-email").value;
+      const message = document.getElementById("feed-message").value;
+      
+      db.feedback.insertOne({
+        name, classNum, email, message, date: new Date().toISOString().split("T")[0]
+      });
+      document.getElementById("feedback-form").reset();
+      showToast("Feedback Logged", "Thank you! Your feedback has been sent directly to the Principal's inbox.", "success");
+    }
+
+    // --- PRINCIPAL DASHBOARD VIEW TAB-CONTROLS ---
+    function switchPrincipalTab(tabName) {
+      appState.activeDashboardTab = tabName;
+      document.querySelectorAll("#principal-dashboard-view .dash-nav-item").forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("onclick").includes(tabName)) item.classList.add("active");
+      });
+      
+      document.querySelectorAll("#principal-dashboard-view .dash-pane").forEach(pane => pane.classList.remove("active"));
+      
+      const pane = document.getElementById(`p-pane-${tabName}`);
+      if (pane) pane.classList.add("active");
+      
+      renderPrincipalDashboardPane(tabName);
+    }
+
+    function renderPrincipalDashboard() {
+      switchPrincipalTab(appState.activeDashboardTab);
+    }
+
+    function renderPrincipalDashboardPane(tabName) {
+      const teachers = db.teachers.getRaw();
+      const materials = db.materials.getRaw();
+      const quizzes = db.quizzes.getRaw();
+      const videos = db.videos.getRaw();
+      const feedbacks = db.feedback.getRaw();
+      
+      if (tabName === "overview") {
+        document.getElementById("p-stat-teachers").innerText = teachers.length;
+        document.getElementById("p-stat-materials").innerText = materials.filter(m => m.isApproved).length;
+        document.getElementById("p-stat-quizzes").innerText = quizzes.filter(q => q.isApproved).length;
+        document.getElementById("p-stat-feedback").innerText = feedbacks.length;
+        
+        renderAnalyticsChart();
+        
+        const pendingMaterials = materials.filter(m => !m.isApproved);
+        const pendingVideos = videos.filter(v => !v.isApproved);
+        const pendingQuizzes = quizzes.filter(q => !q.isApproved);
+        const totalPendingCount = pendingMaterials.length + pendingVideos.length + pendingQuizzes.length;
+        
+        const logsContainer = document.getElementById("p-activity-log-box");
+        if (logsContainer) {
+          if (totalPendingCount === 0) {
+            logsContainer.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px;">No pending moderation actions. All systems clean!</div>`;
+          } else {
+            logsContainer.innerHTML = `
+              <div style="background-color:var(--primary-light); border:1px solid var(--border-color); padding:14px; margin-bottom:12px; font-size:0.85rem; font-weight:600; color:var(--primary); display:flex; justify-content:space-between; align-items:center;">
+                <span>Moderation Warning Queue</span>
+                <span class="user-badge principal" style="font-size:0.72rem;">${totalPendingCount} Action Items</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Please navigate to the <strong>Content Approval</strong> tab to review resource submissions.</p>
+            `;
+          }
+        }
+      }
+      
+      else if (tabName === "teachers") {
+        const tbody = document.getElementById("p-teachers-table-body");
+        if (tbody) {
+          if (teachers.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="empty-state" style="padding: 30px;">No teachers added yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = teachers.map((t, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${t.name}</strong></td>
+                <td>${t.email}</td>
+                <td>
+                  <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                    ${t.assignedClasses.map(c => `<span class="vid-badge class" style="font-size:0.65rem; padding:2px 6px;">Class ${c}</span>`).join("")}
+                  </div>
+                </td>
+                <td>
+                  <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                    ${t.assignedSubjects.map(s => `<span class="vid-badge" style="font-size:0.65rem; padding:2px 6px;">${s}</span>`).join("")}
+                  </div>
+                </td>
+                <td><span class="status-pill ${t.status.toLowerCase()}">${t.status}</span></td>
+                <td>
+                  <div style="display:flex; gap:8px;">
+                    <button class="btn btn-outline" style="padding:4px 8px; font-size:0.78rem;" onclick="editTeacherForm('${t.id}')">Edit</button>
+                    <button class="btn btn-danger" style="padding:4px 8px; font-size:0.78rem;" onclick="deleteTeacherAccount('${t.id}')">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+      
+      else if (tabName === "moderation") {
+        const container = document.getElementById("p-moderation-container");
+        if (!container) return;
+        
+        const pendingMat = materials.filter(m => !m.isApproved);
+        const pendingVid = videos.filter(v => !v.isApproved);
+        const pendingQuiz = quizzes.filter(q => !q.isApproved);
+        const totalPending = pendingMat.length + pendingVid.length + pendingQuiz.length;
+        
+        if (totalPending === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <i data-lucide="check-square" class="empty-state-icon" style="color:var(--color-success);"></i>
+              <h3>No Content Awaiting Approval</h3>
+              <p>Teachers have not submitted any new educational materials requiring principal review.</p>
+            </div>
+          `;
+          if (window.lucide) lucide.createIcons();
+          return;
+        }
+        
+        let html = "";
+        if (pendingMat.length > 0) {
+          html += `
+            <h4 style="margin:20px 0 10px 0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Pending Study Notes (${pendingMat.length})</h4>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr><th>Title</th><th>Subject</th><th>Class</th><th>Teacher</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                  ${pendingMat.map(m => `
+                    <tr>
+                      <td><strong>${m.title}</strong></td>
+                      <td>${m.subject}</td>
+                      <td>Class ${m.classNum}</td>
+                      <td>${m.uploadedBy}</td>
+                      <td>
+                        <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="approveContent('material', '${m.id}', true)">Approve</button>
+                        <button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="approveContent('material', '${m.id}', false)">Reject</button>
+                      </td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+          `;
+        }
+        
+        if (pendingVid.length > 0) {
+          html += `
+            <h4 style="margin:30px 0 10px 0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Pending Videos (${pendingVid.length})</h4>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr><th>Title</th><th>Subject</th><th>Class</th><th>Teacher</th><th>Link</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                  ${pendingVid.map(v => `
+                    <tr>
+                      <td><strong>${v.title}</strong></td>
+                      <td>${v.subject}</td>
+                      <td>Class ${v.classNum}</td>
+                      <td>${v.uploadedBy}</td>
+                      <td><a href="${v.videoUrl}" target="_blank" style="color:var(--primary);text-decoration:underline;">Open Link</a></td>
+                      <td>
+                        <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="approveContent('video', '${v.id}', true)">Approve</button>
+                        <button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="approveContent('video', '${v.id}', false)">Reject</button>
+                      </td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+          `;
+        }
+        container.innerHTML = html;
+      }
+      
+      else if (tabName === "settings") {
+        const settings = db.settings.get();
+        document.getElementById("p-set-name").value = settings.schoolName;
+        document.getElementById("p-set-motto").value = settings.motto;
+        document.getElementById("p-set-phone").value = settings.phone;
+        document.getElementById("p-set-email").value = settings.email;
+        document.getElementById("p-set-address").value = settings.address;
+      }
+      
+      else if (tabName === "feedback") {
+        const tbody = document.getElementById("p-feedback-table-body");
+        if (tbody) {
+          if (feedbacks.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state" style="padding:30px;">No parent feedback messages received.</td></tr>`;
+          } else {
+            tbody.innerHTML = feedbacks.reverse().map((f, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${f.name}</strong> (Class ${f.classNum})</td>
+                <td>${f.email}</td>
+                <td><div style="max-width:320px; font-style:italic; font-size:0.85rem;">"${f.message}"</div></td>
+                <td><small>${f.date}</small></td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+    }
+
+    function renderAnalyticsChart() {
+      const chart = document.getElementById("p-analytics-chart");
+      if (!chart) return;
+      
+      const materials = db.materials.find({ isApproved: true });
+      const subjects = ["Mathematics", "Science", "English", "Social Studies", "Computer Science"];
+      const counts = subjects.map(sub => materials.filter(m => m.subject === sub).length);
+      const maxVal = Math.max(...counts, 1);
+      
+      chart.innerHTML = subjects.map((sub, idx) => {
+        const heightPercent = Math.round((counts[idx] / maxVal) * 80) + 10;
+        return `
+          <div class="chart-bar-group">
+            <div class="chart-bar" style="height: ${heightPercent}%;">
+              <div class="chart-tooltip">${counts[idx]} Materials</div>
+            </div>
+            <div class="chart-bar-label">${sub.split(" ")[0]}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function approveContent(type, id, approved) {
+      if (type === "material") {
+        if (approved) {
+          db.materials.updateOne({ id: id }, { isApproved: true });
+          showToast("Resource Approved", "Study notes published successfully.", "success");
+        } else {
+          db.materials.deleteOne({ id: id });
+          showToast("Resource Rejected", "Material has been deleted.", "warning");
+        }
+      } else if (type === "video") {
+        if (approved) {
+          db.videos.updateOne({ id: id }, { isApproved: true });
+          showToast("Video Approved", "Lesson video published.", "success");
+        } else {
+          db.videos.deleteOne({ id: id });
+          showToast("Video Rejected", "Lesson video deleted.", "warning");
+        }
+      }
+      renderPrincipalDashboardPane("moderation");
+    }
+
+    // CRUD: TEACHER MANAGEMENT
+    function openAddTeacherModal() {
+      appState.editingTeacherId = null;
+      document.getElementById("teacher-modal-title").innerText = "Add New Educator Account";
+      document.getElementById("teacher-form").reset();
+      document.querySelectorAll('.teacher-cls-checkbox').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.teacher-sub-checkbox').forEach(cb => cb.checked = false);
+      openModal("teacher-add-modal");
+    }
+
+    function editTeacherForm(teacherId) {
+      const teacher = db.teachers.findOne({ id: teacherId });
+      if (!teacher) return;
+      
+      appState.editingTeacherId = teacherId;
+      document.getElementById("teacher-modal-title").innerText = `Edit ${teacher.name}`;
+      
+      document.getElementById("teacher-name").value = teacher.name;
+      document.getElementById("teacher-email").value = teacher.email;
+      document.getElementById("teacher-password").value = teacher.password;
+      document.getElementById("teacher-status").value = teacher.status;
+      
+      document.querySelectorAll('.teacher-cls-checkbox').forEach(cb => {
+        cb.checked = teacher.assignedClasses.includes(cb.value);
+      });
+      document.querySelectorAll('.teacher-sub-checkbox').forEach(cb => {
+        cb.checked = teacher.assignedSubjects.includes(cb.value);
+      });
+      openModal("teacher-add-modal");
+    }
+
+    function handleTeacherSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("teacher-name").value;
+      const email = document.getElementById("teacher-email").value.toLowerCase().trim();
+      const password = document.getElementById("teacher-password").value;
+      const status = document.getElementById("teacher-status").value;
+      
+      const assignedClasses = [];
+      document.querySelectorAll('.teacher-cls-checkbox:checked').forEach(cb => assignedClasses.push(cb.value));
+      const assignedSubjects = [];
+      document.querySelectorAll('.teacher-sub-checkbox:checked').forEach(cb => assignedSubjects.push(cb.value));
+      
+      if (assignedClasses.length === 0 || assignedSubjects.length === 0) {
+        showToast("Assignments Required", "Please assign at least one class and subject.", "warning");
+        return;
+      }
+      
+      if (appState.editingTeacherId) {
+        db.teachers.updateOne({ id: appState.editingTeacherId }, {
+          name, email, password, status, assignedClasses, assignedSubjects
+        });
+        showToast("Teacher Updated", `${name}'s profile has been updated.`, "success");
+      } else {
+        const existing = db.teachers.findOne({ email: email });
+        if (existing) {
+          showToast("Email Unavailable", "This email is already in use.", "danger");
+          return;
+        }
+        db.teachers.insertOne({
+          name, email, password, status, assignedClasses, assignedSubjects
+        });
+        showToast("Teacher Created", `Educator account for ${name} created.`, "success");
+      }
+      closeModal("teacher-add-modal");
+      renderPrincipalDashboardPane("teachers");
+    }
+
+    function deleteTeacherAccount(teacherId) {
+      if (confirm("Permanently delete this educator profile?")) {
+        const teacher = db.teachers.findOne({ id: teacherId });
+        db.teachers.deleteOne({ id: teacherId });
+        showToast("Account Terminated", `Educator "${teacher.name}" deleted.`, "warning");
+        renderPrincipalDashboardPane("teachers");
+      }
+    }
+
+    function handleSettingsSubmit(event) {
+      event.preventDefault();
+      const schoolName = document.getElementById("p-set-name").value;
+      const motto = document.getElementById("p-set-motto").value;
+      const phone = document.getElementById("p-set-phone").value;
+      const email = document.getElementById("p-set-email").value;
+      const address = document.getElementById("p-set-address").value;
+      
+      db.settings.update({ schoolName, motto, phone, email, address });
+      renderHeader();
+      showToast("Settings Updated", "School profile data saved.", "success");
+    }
+
+    // --- TEACHER DASHBOARD VIEW TAB-CONTROLS ---
+    function switchTeacherTab(tabName) {
+      appState.activeDashboardTab = tabName;
+      document.querySelectorAll("#teacher-dashboard-view .dash-nav-item").forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("onclick").includes(tabName)) item.classList.add("active");
+      });
+      document.querySelectorAll("#teacher-dashboard-view .dash-pane").forEach(pane => pane.classList.remove("active"));
+      
+      const pane = document.getElementById(`t-pane-${tabName}`);
+      if (pane) pane.classList.add("active");
+      
+      renderTeacherDashboardPane(tabName);
+    }
+
+    function renderTeacherDashboard() {
+      switchTeacherTab(appState.activeDashboardTab);
+    }
+
+    function renderTeacherDashboardPane(tabName) {
+      const user = auth.getCurrentUser();
+      if (!user) return;
+      
+      const materials = db.materials.find({ uploadedBy: user.id });
+      const videos = db.videos.find({ uploadedBy: user.id });
+      const quizzes = db.quizzes.find({ createdBy: user.id });
+      const announcements = db.announcements.find({ createdBy: user.name });
+      
+      const metaBox = document.getElementById("t-assigned-classes-display");
+      if (metaBox) {
+        metaBox.innerHTML = `
+          <div style="background-color: var(--primary-light); padding:15px; border-radius:var(--radius-md); border:1px solid var(--border-color); font-size:0.85rem; display:flex; flex-direction:column; gap:8px;">
+            <div><strong>Educator:</strong> ${user.name}</div>
+            <div><strong>Classes:</strong> 
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">
+                ${user.assignedClasses.map(c => `<span class="vid-badge class" style="font-size:0.65rem;">Class ${c}</span>`).join("")}
+              </div>
+            </div>
+            <div><strong>Subjects:</strong>
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">
+                ${user.assignedSubjects.map(s => `<span class="vid-badge" style="font-size:0.65rem;">${s}</span>`).join("")}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (tabName === "overview") {
+        document.getElementById("t-stat-materials").innerText = materials.length;
+        document.getElementById("t-stat-videos").innerText = videos.length;
+        document.getElementById("t-stat-quizzes").innerText = quizzes.length;
+        document.getElementById("t-stat-ann").innerText = announcements.length;
+      }
+      
+      else if (tabName === "materials") {
+        const selectClass = document.getElementById("t-mat-class");
+        const selectSub = document.getElementById("t-mat-subject");
+        if (selectClass && selectSub) {
+          selectClass.innerHTML = user.assignedClasses.map(c => `<option value="${c}">Class ${c}</option>`).join("");
+          selectSub.innerHTML = user.assignedSubjects.map(s => `<option value="${s}">${s}</option>`).join("");
+        }
+        
+        const tbody = document.getElementById("t-materials-table-body");
+        if (tbody) {
+          if (materials.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" class="empty-state" style="padding: 24px;">No study materials uploaded yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = materials.map((m, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${m.title}</strong></td>
+                <td>${m.subject}</td>
+                <td>Class ${m.classNum}</td>
+                <td><span class="status-pill ${m.isApproved ? 'active' : 'pending'}">${m.isApproved ? 'Approved' : 'Pending'}</span></td>
+                <td><button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteContentSelf('material', '${m.id}')">Delete</button></td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+      
+      else if (tabName === "videos") {
+        const selectClass = document.getElementById("t-vid-class");
+        const selectSub = document.getElementById("t-vid-subject");
+        if (selectClass && selectSub) {
+          selectClass.innerHTML = user.assignedClasses.map(c => `<option value="${c}">Class ${c}</option>`).join("");
+          selectSub.innerHTML = user.assignedSubjects.map(s => `<option value="${s}">${s}</option>`).join("");
+        }
+        
+        const tbody = document.getElementById("t-videos-table-body");
+        if (tbody) {
+          if (videos.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state" style="padding: 24px;">No video lessons uploaded.</td></tr>`;
+          } else {
+            tbody.innerHTML = videos.map((v, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${v.title}</strong></td>
+                <td>${v.subject}</td>
+                <td>Class ${v.classNum}</td>
+                <td><button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteContentSelf('video', '${v.id}')">Delete</button></td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+      
+      else if (tabName === "quizzes") {
+        const selectClass = document.getElementById("t-quiz-class");
+        const selectSub = document.getElementById("t-quiz-subject");
+        if (selectClass && selectSub) {
+          selectClass.innerHTML = user.assignedClasses.map(c => `<option value="${c}">Class ${c}</option>`).join("");
+          selectSub.innerHTML = user.assignedSubjects.map(s => `<option value="${s}">${s}</option>`).join("");
+        }
+        
+        const tbody = document.getElementById("t-quizzes-table-body");
+        if (tbody) {
+          if (quizzes.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state" style="padding: 24px;">No quizzes constructed yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = quizzes.map((q, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${q.title}</strong></td>
+                <td>${q.subject}</td>
+                <td>Class ${q.classNum}</td>
+                <td><button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteContentSelf('quiz', '${q.id}')">Delete</button></td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+      
+      else if (tabName === "announcements") {
+        const selectClass = document.getElementById("t-ann-class");
+        if (selectClass) {
+          selectClass.innerHTML = `<option value="All">All School</option>` + user.assignedClasses.map(c => `<option value="${c}">Class ${c}</option>`).join("");
+        }
+        const tbody = document.getElementById("t-ann-table-body");
+        if (tbody) {
+          if (announcements.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-state" style="padding: 24px;">No announcements posted yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = announcements.map((a, idx) => `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${a.title}</strong></td>
+                <td>${a.description}</td>
+                <td>${a.classNum}</td>
+                <td><button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteContentSelf('announcement', '${a.id}')">Delete</button></td>
+              </tr>
+            `).join("");
+          }
+        }
+      }
+      
+      else if (tabName === "performance") {
+        const tbody = document.getElementById("t-performance-table-body");
+        if (!tbody) return;
+        
+        const qIds = quizzes.map(q => q.id);
+        const students = db.students.getRaw();
+        let scoresList = [];
+        students.forEach(st => {
+          st.quizScores = st.quizScores || [];
+          st.quizScores.forEach(sc => {
+            if (qIds.includes(sc.quizId)) {
+              scoresList.push({
+                studentName: st.name, studentClass: st.classNum, quizTitle: sc.quizTitle,
+                score: sc.score, total: sc.totalQuestions, date: sc.date
+              });
+            }
+          });
+        });
+        
+        if (scoresList.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" class="empty-state" style="padding: 30px;">No students have taken your quizzes yet.</td></tr>`;
+        } else {
+          tbody.innerHTML = scoresList.map((sc, idx) => {
+            const pct = Math.round((sc.score / sc.total) * 100);
+            return `
+              <tr>
+                <td><strong>${idx + 1}</strong></td>
+                <td><strong>${sc.studentName}</strong> (Class ${sc.studentClass})</td>
+                <td>${sc.quizTitle}</td>
+                <td><strong>${sc.score} / ${sc.total}</strong> (${pct}%)</td>
+                <td>${sc.date}</td>
+              </tr>
+            `;
+          }).join("");
+        }
+      }
+    }
+
+    // TEACHER ACTIONS
+    function handleMaterialUpload(event) {
+      event.preventDefault();
+      const user = auth.getCurrentUser();
+      if (!user) return;
+      
+      const title = document.getElementById("t-mat-title").value;
+      const classNum = document.getElementById("t-mat-class").value;
+      const subject = document.getElementById("t-mat-subject").value;
+      const fileType = document.getElementById("t-mat-type").value;
+      
+      const sizeArr = ["1.5 MB", "2.1 MB", "980 KB", "4.2 MB", "3.6 MB"];
+      const fileSize = sizeArr[Math.floor(Math.random() * sizeArr.length)];
+      
+      db.materials.insertOne({
+        title, subject, classNum, fileType, fileSize,
+        fileUrl: "data:application/pdf;base64,...",
+        uploadedBy: user.id,
+        uploadDate: new Date().toISOString().split("T")[0],
+        isApproved: false
+      });
+      document.getElementById("teacher-material-form").reset();
+      showToast("Upload Pending", "Submitted for review. Will be live once approved.", "info");
+      renderTeacherDashboardPane("materials");
+    }
+
+    function handleVideoUpload(event) {
+      event.preventDefault();
+      const user = auth.getCurrentUser();
+      if (!user) return;
+      
+      const title = document.getElementById("t-vid-title").value;
+      const classNum = document.getElementById("t-vid-class").value;
+      const subject = document.getElementById("t-vid-subject").value;
+      let videoUrl = document.getElementById("t-vid-url").value;
+      
+      if (videoUrl.includes("watch?v=")) videoUrl = videoUrl.replace("watch?v=", "embed/");
+      else if (videoUrl.includes("youtu.be/")) videoUrl = videoUrl.replace("youtu.be/", "youtube.com/embed/");
+      
+      db.videos.insertOne({ title, subject, classNum, videoUrl, uploadedBy: user.id, isApproved: false });
+      document.getElementById("teacher-video-form").reset();
+      showToast("Video Link Added", "Submitted for review.", "info");
+      renderTeacherDashboardPane("videos");
+    }
+
+    function handleAnnouncementCreate(event) {
+      event.preventDefault();
+      const user = auth.getCurrentUser();
+      if (!user) return;
+      
+      const title = document.getElementById("t-ann-title").value;
+      const description = document.getElementById("t-ann-desc").value;
+      const classNum = document.getElementById("t-ann-class").value;
+      
+      db.announcements.insertOne({
+        title, description, createdBy: user.name, classNum, date: new Date().toISOString().split("T")[0]
+      });
+      document.getElementById("teacher-ann-form").reset();
+      showToast("Announcement Posted", "Announcement published successfully.", "success");
+      renderTeacherDashboardPane("announcements");
+    }
+
+    // QUIZ BUILDER
+    let activeQuizBuilderQuestions = [];
+    function openCreateQuizModal() {
+      activeQuizBuilderQuestions = [];
+      document.getElementById("q-builder-form").reset();
+      document.getElementById("q-builder-questions-list").innerHTML = "";
+      addQuizBuilderQuestionRow();
+      openModal("quiz-create-modal");
+    }
+
+    function addQuizBuilderQuestionRow() {
+      const container = document.getElementById("q-builder-questions-list");
+      const qIdx = activeQuizBuilderQuestions.length;
+      
+      const row = document.createElement("div");
+      row.className = "question-builder-item";
+      row.id = `qb-q-row-${qIdx}`;
+      row.innerHTML = `
+        <button type="button" class="btn-remove-q" onclick="removeQuizBuilderQuestionRow(${qIdx})">&times; Remove Question</button>
+        <div class="form-group">
+          <label class="form-label">Question Text</label>
+          <input type="text" class="form-control qb-q-text" placeholder="Question Text" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Option A</label><input type="text" class="form-control qb-opt-a" required /></div>
+          <div class="form-group"><label class="form-label">Option B</label><input type="text" class="form-control qb-opt-b" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Option C</label><input type="text" class="form-control qb-opt-c" required /></div>
+          <div class="form-group"><label class="form-label">Option D</label><input type="text" class="form-control qb-opt-d" required /></div>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Correct Choice</label>
+          <select class="form-control qb-correct" required>
+            <option value="A">Option A</option><option value="B">Option B</option>
+            <option value="C">Option C</option><option value="D">Option D</option>
+          </select>
+        </div>
+      `;
+      container.appendChild(row);
+      activeQuizBuilderQuestions.push({ active: true });
+    }
+
+    function removeQuizBuilderQuestionRow(idx) {
+      const row = document.getElementById(`qb-q-row-${idx}`);
+      if (row) {
+        row.remove();
+        activeQuizBuilderQuestions[idx].active = false;
+      }
+    }
+
+    function handleQuizSubmit(event) {
+      event.preventDefault();
+      const user = auth.getCurrentUser();
+      if (!user) return;
+      
+      const title = document.getElementById("t-quiz-title").value;
+      const classNum = document.getElementById("t-quiz-class").value;
+      const subject = document.getElementById("t-quiz-subject").value;
+      
+      const questionsList = [];
+      const rows = document.querySelectorAll(".question-builder-item");
+      if (rows.length === 0) {
+        showToast("Questions Required", "Please add at least one question.", "warning");
+        return;
+      }
+      
+      rows.forEach(row => {
+        const qText = row.querySelector(".qb-q-text").value;
+        const optA = row.querySelector(".qb-opt-a").value;
+        const optB = row.querySelector(".qb-opt-b").value;
+        const optC = row.querySelector(".qb-opt-c").value;
+        const optD = row.querySelector(".qb-opt-d").value;
+        const correctLetter = row.querySelector(".qb-correct").value;
+        
+        let correctAnswerValue = "";
+        if (correctLetter === "A") correctAnswerValue = optA;
+        if (correctLetter === "B") correctAnswerValue = optB;
+        if (correctLetter === "C") correctAnswerValue = optC;
+        if (correctLetter === "D") correctAnswerValue = optD;
+        
+        questionsList.push({
+          question: qText,
+          options: [optA, optB, optC, optD],
+          correctAnswer: correctAnswerValue
+        });
+      });
+      
+      db.quizzes.insertOne({ title, subject, classNum, questions: questionsList, createdBy: user.id, isApproved: false });
+      closeModal("quiz-create-modal");
+      showToast("Quiz Published", "Submitted to Principal for review.", "success");
+      renderTeacherDashboardPane("quizzes");
+    }
+
+    function deleteContentSelf(type, id) {
+      if (confirm("Are you sure you want to permanently delete this resource?")) {
+        if (type === "material") { db.materials.deleteOne({ id: id }); renderTeacherDashboardPane("materials"); }
+        else if (type === "video") { db.videos.deleteOne({ id: id }); renderTeacherDashboardPane("videos"); }
+        else if (type === "quiz") { db.quizzes.deleteOne({ id: id }); renderTeacherDashboardPane("quizzes"); }
+        else if (type === "announcement") { db.announcements.deleteOne({ id: id }); renderTeacherDashboardPane("announcements"); }
+        showToast("Resource Removed", "The resource has been deleted.", "warning");
+      }
+    }
+  </script>
+
+</body>
+</html>
